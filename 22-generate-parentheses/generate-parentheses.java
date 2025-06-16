@@ -17,7 +17,7 @@ class Solution {
             paren.delete(paren.length() - 1, paren.length());
         }
     }
-    public List<String> generateParenthesis(int n) {
+    public final List<String> generateParenthesis(int n) {
         List<String> validParens = new ArrayList<>();
         StringBuilder paren = new StringBuilder();
         backtrack(validParens, paren, n, 0, 0);
