@@ -1,6 +1,6 @@
 class Solution {
 public:
-    vector<string> generateParenthesis(int n, string paren = "", int open = 0, int close = 0) {
+    inline vector<string> generateParenthesis(int n, string paren = "", int open = 0, int close = 0) {
         vector<string> validParens;
         if (open == n && close == n) {
             validParens.push_back(paren);
