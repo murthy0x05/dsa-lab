@@ -9,7 +9,7 @@ public:
 
         int smallest = nums[0], result = 0, i = 0;
         while (i < n) {
-            while (abs(nums[i] - smallest) <= k) {
+            while (nums[i] - smallest <= k) {
                 i++;
             }
             result += 1;
