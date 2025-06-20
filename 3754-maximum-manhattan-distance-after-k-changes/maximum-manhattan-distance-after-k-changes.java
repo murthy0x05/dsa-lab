@@ -34,8 +34,6 @@ class Solution {
             maxDis = Math.max(computeMax(news, k), maxDis);
         }
 
-        for (int i = 0; i < 4; i++) System.out.println(news[i]);
-
         return maxDis;
     }
 }
