@@ -2,22 +2,20 @@ class Solution {
 public:
     int minimumDeletions(string word, int k) {
         int n = word.size();
-        unordered_map<char, int> freqMap;
+        int freqMap[26] = {0};
         for (int i = 0; i < n; i++) {
-            freqMap[word[i]] += 1;
+            freqMap[word[i] - 'a'] += 1;
         }
+        std::sort(freqMap, freqMap + 26);
 
         int result = INT_MAX;
-        for (auto [ch, minFreq]: freqMap) {
-            int deletions = 0;
-            for (auto [ch, freq]: freqMap) {
-                if (freq < minFreq) {
-                    deletions += freq;
-                } else if (freq > minFreq + k) {
-                    deletions += freq - minFreq - k;
-                }
-            }
+        int i = 0, deleted = 0;
+        while (i < 26 && freqMap[i] == 0) i++;
+        for (; i < 26; i++) {
+            int deletions = deleted, j = 25;
+            while (freqMap[j] - freqMap[i] > k) deletions += freqMap[j--] - freqMap[i] - k;
             result = std::min(result, deletions);
+            deleted += freqMap[i];
         }
 
         return result;
