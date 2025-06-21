@@ -8,6 +8,7 @@ class Solution {
 
         return dp.get(i).get(j);
     }
+    
     public int minimumDeletions(String word, int k) {
         int freqMap[] = new int[26], n = word.length();
         Arrays.fill(freqMap, 0);
