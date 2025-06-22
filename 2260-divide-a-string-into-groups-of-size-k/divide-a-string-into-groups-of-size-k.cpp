@@ -1,6 +1,6 @@
 class Solution {
 public:
-    vector<string> divideString(string s, int k, char fill) {
+    inline vector<string> divideString(string s, int k, char fill) {
         while (s.size() % k != 0) {
             s.push_back(fill);
         }
