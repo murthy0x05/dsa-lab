@@ -1,5 +1,5 @@
 class Solution {
-    public String[] divideString(String s, int k, char fill) {
+    public final String[] divideString(String s, int k, char fill) {
         int n = s.length(), size = (int)Math.ceil(n / (float)k);
         String[] result = new String[size];
 
