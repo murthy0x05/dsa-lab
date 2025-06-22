@@ -7,7 +7,6 @@ public:
 
         vector<string> result;
         for (int i = 0, len = s.size() / k; i < len; i++) {
-            cout << i * k << " " << i * k + k << endl;
             result.push_back(s.substr(i * k, k));
         }
 
