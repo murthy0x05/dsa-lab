@@ -2,10 +2,10 @@ class Solution {
 private:
     int rows, cols;
     vector<int> dir;
-    bool isValid(int row, int col) {
+    inline bool isValid(int row, int col) {
         return row >= 0 && col >= 0 && row < rows && col < cols;
     }
-    int getArea(vector<vector<int>>& grid, vector<vector<bool>>& visited, int row, int col) {
+    inline int getArea(vector<vector<int>>& grid, vector<vector<bool>>& visited, int row, int col) {
         int area = 1;
         visited[row][col] = true;
         for (int i = 0; i < 4; i++) {
