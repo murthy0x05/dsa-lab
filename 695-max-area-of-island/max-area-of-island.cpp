@@ -19,7 +19,7 @@ private:
         return area;
     }
 public:
-    int maxAreaOfIsland(vector<vector<int>>& grid) {
+    inline int maxAreaOfIsland(vector<vector<int>>& grid) {
         this -> rows = grid.size();
         this -> cols = grid[0].size();
         vector<vector<bool>> visited(rows, vector<bool>(cols, false));
