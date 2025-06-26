@@ -15,9 +15,6 @@ class Solution {
     }
     private int findPivot(int[] nums) {
         int low = 0, high = nums.length - 1;
-        if (nums[low] <= nums[high]) {
-            return low;
-        }
 
         while (low <= high) {
             if (nums[low] <= nums[high]) {
