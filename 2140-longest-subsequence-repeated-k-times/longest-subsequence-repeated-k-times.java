@@ -35,7 +35,6 @@ class Solution {
         while (!q.isEmpty()) {
             StringBuilder curr = q.peek(); q.remove();
             result = new StringBuilder(curr);
-            System.out.println(result.toString());
             for (Character validChar: validCharSet) {
                 curr.append(validChar);
                 if (countSubsequences(s, curr) >= k) {
