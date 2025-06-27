@@ -35,8 +35,7 @@ public:
 
         queue<string> q;
         for (char validChar: validCharSet) {
-            string result = ""; result += validChar;
-            q.push(result);
+            q.push(string(1, validChar));
         }
         string result = "";
         while (!q.empty()) {
