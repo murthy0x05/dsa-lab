@@ -2,7 +2,7 @@ class Solution {
 public:
     inline bool canJump(vector<int>& nums) {
         int n = nums.size();
-        if (n == 1) return true;
+        // if (n == 1) return true;
 
         int i = 0, maxReachable = 0;
         while (i < n) {
