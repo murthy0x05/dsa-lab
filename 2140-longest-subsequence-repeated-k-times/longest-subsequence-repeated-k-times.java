@@ -1,5 +1,5 @@
 class Solution {
-    private int countSubsequences(String seq, StringBuilder subseq) {
+    private int countSubsequences(String seq, String subseq) {
         int n = seq.length(), m = subseq.length();
         int i = 0, j = 0, result = 0;
         while (i < n) {
@@ -28,19 +28,17 @@ class Solution {
                 validCharSet.add((char)(i + 'a'));
         }
 
-        Queue<StringBuilder> q = new LinkedList<>();
+        Queue<String> q = new LinkedList<>();
         for (Character validChar: validCharSet)
-            q.add(new StringBuilder(validChar));
-        StringBuilder result = new StringBuilder();
+            q.add(String.valueOf(validChar));
+        String result = "";
         while (!q.isEmpty()) {
-            StringBuilder curr = q.peek(); q.remove();
-            result = new StringBuilder(curr);
+            String curr = q.poll();
+            result = curr;
             for (Character validChar: validCharSet) {
-                curr.append(validChar);
-                if (countSubsequences(s, curr) >= k) {
-                    q.add(new StringBuilder(curr));
+                if (countSubsequences(s, curr + validChar) >= k) {
+                    q.add(curr + validChar);
                 }
-                curr.deleteCharAt(curr.length() - 1);
             }
         }
 
