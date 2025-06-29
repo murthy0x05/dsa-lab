@@ -10,8 +10,7 @@ class Solution {
     }
 public:
     int numSubseq(vector<int>& nums, int target) {
-        int n = nums.size();
-        int result = 0;
+        int n = nums.size(), result = 0;
         sort(nums.begin(), nums.end());
 
         vector<int> twoPower = preComputeTwoPower(n);
