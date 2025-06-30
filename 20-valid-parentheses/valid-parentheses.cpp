@@ -1,12 +1,9 @@
 class Solution {
 public:
-    bool isValid(string s) {
+    inline bool isValid(string s) {
         int n = s.size();
-        unordered_map<char, char> map;
-        map[')'] = '(';
-        map['}'] = '{';
-        map[']'] = '[';
-
+        unordered_map<char, char> map = {{')', '('}, {'}', '{'}, {']', '['}};
+        
         stack<char> st;
         for (int i = 0; i < n; i++) {
             if (map.count(s[i])) {
