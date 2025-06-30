@@ -1,11 +1,8 @@
 class Solution {
     public boolean isValid(String s) {
         int n = s.length();
-        HashMap<Character, Character> map = new HashMap<>();
+        Map<Character, Character> map = Map.of(')', '(', '}', '{', ']', '[');
         Deque<Character> stk = new ArrayDeque<>();
-        map.put(')', '(');
-        map.put('}', '{');
-        map.put(']', '[');
 
         for (char bracket: s.toCharArray()) {
             if (map.containsKey(bracket)) {
