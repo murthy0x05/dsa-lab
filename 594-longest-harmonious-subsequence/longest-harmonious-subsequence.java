@@ -12,7 +12,6 @@ class Solution {
             if (nums[end - 1] - nums[start] == 1) {
                 longest = Math.max(longest, end - start);
             }
-            System.out.println(start + " " + end);
             start++;
         }
 
