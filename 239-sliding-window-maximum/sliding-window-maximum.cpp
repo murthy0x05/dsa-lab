@@ -1,7 +1,7 @@
 class MaximumQueue {
     queue<int> q; deque<int> d;
 public:
-    void enqueue(int num) {
+    inline void enqueue(int num) {
         if (q.size() == 0) {
             q.push(num);
             d.push_back(num);
@@ -13,21 +13,21 @@ public:
             d.push_back(num);
         }
     }
-    void dequeue() {
+    inline void dequeue() {
         if (q.front() == d.front()) {
             q.pop(); d.pop_front();
         } else {
             q.pop();
         }
     }
-    int getMax() {
+    inline int getMax() {
         return d.front();
     }
 };
 
 class Solution {
 public:
-    vector<int> maxSlidingWindow(vector<int>& nums, int k) {
+    inline vector<int> maxSlidingWindow(vector<int>& nums, int k) {
         int n = nums.size();
         MaximumQueue maxQueue;
         for (int i = 0; i < k - 1; i++) {
