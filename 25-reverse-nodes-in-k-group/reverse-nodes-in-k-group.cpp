@@ -26,7 +26,7 @@ class Solution {
         return ;
     }
 public:
-    ListNode* reverseKGroup(ListNode* head, int k) {
+    inline ListNode* reverseKGroup(ListNode* head, int k) {
         ListNode* prevTail = nullptr;
         ListNode* nextHead = head;
         ListNode* temp = head;
