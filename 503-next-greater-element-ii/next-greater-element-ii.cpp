@@ -1,6 +1,6 @@
 class Solution {
 public:
-    vector<int> nextGreaterElements(vector<int>& nums) {
+    inline vector<int> nextGreaterElements(vector<int>& nums) {
         int n = nums.size();
         stack<int> mStack; mStack.push(nums[n - 1]); // Monotonic Stack: Decreasing
 
