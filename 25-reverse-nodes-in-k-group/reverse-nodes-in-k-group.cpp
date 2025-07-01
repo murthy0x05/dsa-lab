@@ -54,12 +54,6 @@ public:
             } else {
                 prevTail -> next = nextHead;
                 nextHead = nullptr;
-                ListNode* curr = result;
-                while (curr) {
-                    cout << curr -> val << " ";
-                    curr = curr -> next;
-                }
-                cout << endl;
             }
         }
 
