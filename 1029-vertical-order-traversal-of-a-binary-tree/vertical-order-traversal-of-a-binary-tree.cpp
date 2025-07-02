@@ -14,7 +14,7 @@ class Solution {
         if (!node) {
             return ;
         }
-        nodes.push_back({node, {x, y}});
+        nodes.push_back({node -> val, {x, y}});
         if (node -> left) {
             doDFS(node -> left, nodes, x + 1, y - 1);
         }
@@ -24,7 +24,7 @@ class Solution {
     }
 public:
     vector<vector<int>> verticalTraversal(TreeNode* root) {
-        vector<pair<TreeNode*, pair<int, int>>> nodes;
+        vector<pair<int, pair<int, int>>> nodes;
         doDFS(root, nodes, 0, 0);
         sort(nodes.begin(), nodes.end(), [](const auto& a, const auto& b) {
             if (a.second.second != b.second.second) {
@@ -33,7 +33,7 @@ public:
                 if (a.second.first != b.second.first) {
                     return a.second.first < b.second.first;
                 } else {
-                    return a.first -> val < b.first -> val;
+                    return a.first < b.first;
                 }
             }
         });
@@ -43,9 +43,9 @@ public:
         vector<vector<int>> result;
         int i = 0, n = nodes.size();
         while (i < n) {
-            result.push_back({nodes[i].first -> val}); i++;
+            result.push_back({nodes[i].first}); i++;
             while (i < n && nodes[i - 1].second.second == nodes[i].second.second) {
-                result.back().push_back(nodes[i].first -> val);
+                result.back().push_back(nodes[i].first);
                 i++;
             }
         }
