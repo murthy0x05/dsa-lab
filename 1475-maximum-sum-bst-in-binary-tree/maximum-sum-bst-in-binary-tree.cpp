@@ -58,15 +58,6 @@ public:
         this->isBST = isBST;
     }
 };
-// struct TreeNode {
-//     int val;
-//     TreeNode *left;
-//     TreeNode *right;
-//     TreeNode() : val(0), left(nullptr), right(nullptr) {}
-//     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
-//     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
-// };
-
 
 class Solution {
     int maxSum = 0;
@@ -80,82 +71,23 @@ public:
         if (!root) {
             return new TreeData(INT_MAX, INT_MIN, 0, true);
         }
-        
-        TreeData* leftData = doTraversal(root->left);
-        TreeData* rightData = doTraversal(root->right);
-        
-        bool isBST = leftData->isBST && rightData->isBST &&
-                     root->val > leftData->maxValue && 
-                     root->val < rightData->minValue;
-        
+        TreeData* leftData = doTraversal(root -> left);
+        TreeData* rightData = doTraversal(root -> right);
+
+        bool isBST = leftData -> isBST && rightData -> isBST &&
+                     root -> val > leftData -> maxValue && 
+                     root -> val < rightData -> minValue;
+
         if (isBST) {
-            int currentSum = leftData->sum + rightData->sum + root->val;
-            maxSum = max(maxSum, currentSum);
-            
-            int minVal = (root->left) ? leftData->minValue : root->val;
-            int maxVal = (root->right) ? rightData->maxValue : root->val;
-            
-            return new TreeData(minVal, maxVal, currentSum, true);
+            int currSum = leftData -> sum + rightData -> sum + root -> val;
+            maxSum = max(maxSum, currSum);
+
+            int minVal = (root -> left) ? leftData -> minValue : root -> val;
+            int maxVal = (root -> right) ? rightData -> maxValue : root -> val;
+            return new TreeData(minVal, maxVal, currSum, isBST);
         } else {
+            
             return new TreeData(INT_MIN, INT_MAX, 0, false);
         }
     }
 };
-
-// class TreeData {
-// public:
-//     int minValue;
-//     int maxValue;
-//     bool isBST;
-//     TreeData(int min, int max, bool isBST) {
-//         minValue = min;
-//         maxValue = max;
-//         this -> isBST = isBST;
-//     }
-// };
-
-// class Solution {
-//     int maxSum = 0;
-//     int currSum = 0;
-// public:
-//     int maxSumBST(TreeNode* root) {
-//         TreeData* treeData = doTraversal(root);
-//         return maxSum;
-//     }
-//     TreeData* doTraversal(TreeNode* root) {
-//         if (!root) return nullptr;
-//         TreeData* leftTree = doTraversal(root -> left);
-//         int minVal = INT_MAX, maxVal = INT_MIN; bool isBST = true;
-//         if (root -> left) {
-//             maxVal = max(maxVal, leftTree -> maxValue);
-//         }
-
-//         if (root -> left && (root -> val <= root -> left -> val || leftTree -> isBST)) {
-//             currSum = 0;
-//             isBST = false;
-//         }
-
-//         TreeData* rightTree = doTraversal(root -> right);
-//         if (root -> right) {
-//             minVal = min(minVal, rightTree -> minValue);
-//         }
-
-//         if (root -> right && (root -> val >= root -> right -> val || rightTree -> isBST)) {
-//             currSum = 0;
-//             isBST = false;
-//         }
-
-//         if (isBST && maxVal < root -> val && minVal > root -> val) {
-//             currSum += (root -> val);
-//             // cout << root -> val << endl;
-//             maxSum = max(maxSum, currSum);
-//         } else {
-//             currSum = 0;
-//         }
-
-//         minVal = min(minVal, root -> val);
-//         maxVal = max(maxVal, root -> val);
-//         TreeData* currData = new TreeData(minVal, maxVal, isBST);
-//         return currData;
-//     }
-// };
