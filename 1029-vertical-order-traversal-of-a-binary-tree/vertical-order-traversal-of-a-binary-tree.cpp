@@ -37,9 +37,9 @@ public:
                 }
             }
         });
-        for (int i = 0; i < nodes.size(); i++) {
-            cout << nodes[i].first -> val << ": " << nodes[i].second.first << " " << nodes[i].second.second << endl;
-        }
+        // for (int i = 0; i < nodes.size(); i++) {
+        //     cout << nodes[i].first -> val << ": " << nodes[i].second.first << " " << nodes[i].second.second << endl;
+        // }
         vector<vector<int>> result;
         int i = 0, n = nodes.size();
         while (i < n) {
