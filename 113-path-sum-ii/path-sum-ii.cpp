@@ -64,30 +64,23 @@
 // };
 
 class Solution {
-    vector<vector<int>> solve(TreeNode* root, vector<int>& path, int currSum, int& targetSum) {
+    vector<vector<int>> result;
+    void solve(TreeNode* root, vector<int>& path, int currSum, int& targetSum) {
         currSum += root -> val;
         path.push_back(root -> val);
-        vector<vector<int>> result;
         if (!root -> left && !root -> right) {
             if (targetSum == currSum) {
                 result.push_back(path);
             }
         }
         if (root -> left) {
-            vector<vector<int>> leftResult = solve(root -> left, path, currSum, targetSum);
-            for (vector<int>& tree: leftResult) {
-                result.push_back(tree);
-            }
+            solve(root -> left, path, currSum, targetSum);
         }
         if (root -> right) {
-            vector<vector<int>> rightResult = solve(root -> right, path, currSum, targetSum);
-            for (vector<int>& tree: rightResult) {
-                result.push_back(tree);
-            }
+            solve(root -> right, path, currSum, targetSum);
         }
         path.pop_back();
 
-        return result;
     }
 public:
     vector<vector<int>> pathSum(TreeNode* root, int targetSum, int currSum = 0) {
@@ -95,6 +88,7 @@ public:
             return {};
         }
         vector<int> path;
-        return solve(root, path, 0, targetSum);
+        solve(root, path, 0, targetSum);
+        return this -> result;
     }
 };
