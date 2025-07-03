@@ -83,7 +83,7 @@ class Solution {
 
     }
 public:
-    inline vector<vector<int>> pathSum(TreeNode* root, int targetSum, int currSum = 0) {
+    inline vector<vector<int>> pathSum(TreeNode* root, int targetSum) {
         if (!root) {
             return {};
         }
