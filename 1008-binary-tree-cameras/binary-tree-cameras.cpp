@@ -36,6 +36,12 @@ public:
         } else {
             return cameras;
         }
-
     }
 };
+
+/*
+ * Here, each node can be defined as one of 3 types:
+ * type 0: No camera, Not being watched.
+ * type 1: No camera, being watched.
+ * type 2: Camera, so begin watched(trivial).
+ */
