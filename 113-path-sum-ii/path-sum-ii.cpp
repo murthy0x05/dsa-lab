@@ -65,7 +65,7 @@
 
 class Solution {
     vector<vector<int>> result;
-    void solve(TreeNode* root, vector<int>& path, int currSum, int& targetSum) {
+    inline void solve(TreeNode* root, vector<int>& path, int currSum, int& targetSum) {
         currSum += root -> val;
         path.push_back(root -> val);
         if (!root -> left && !root -> right) {
@@ -83,7 +83,7 @@ class Solution {
 
     }
 public:
-    vector<vector<int>> pathSum(TreeNode* root, int targetSum, int currSum = 0) {
+    inline vector<vector<int>> pathSum(TreeNode* root, int targetSum, int currSum = 0) {
         if (!root) {
             return {};
         }
