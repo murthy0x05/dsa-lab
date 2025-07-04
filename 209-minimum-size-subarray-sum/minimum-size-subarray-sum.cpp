@@ -10,7 +10,6 @@ public:
                 currSum += nums[end];
                 end += 1;
             }
-            cout << end << " " << start << endl;
             if (currSum >= target)
                 minLen = min(minLen, end - start);
             currSum -= nums[start];
