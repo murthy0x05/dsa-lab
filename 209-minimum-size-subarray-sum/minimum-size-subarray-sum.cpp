@@ -1,6 +1,6 @@
 class Solution {
 public:
-    int minSubArrayLen(int target, vector<int>& nums) {
+    inline int minSubArrayLen(int target, vector<int>& nums) {
         int n = nums.size();
         int start = 0, end = 0;
         int minLen = INT_MAX;
