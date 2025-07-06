@@ -2,6 +2,19 @@ class FindSumPairs {
     unordered_map<int, int> elements;
     vector<int> nums1, nums2;
     int n1, n2;
+    int upper_bound(int target) {
+        int low = 0, high = nums1.size() - 1;
+        while (low <= high) {
+            int mid = (low + high) >> 1;
+            if (nums1[mid] > target) {
+                high = mid - 1;
+            } else {
+                low = mid + 1;
+            }
+        }
+
+        return low;
+    }
 public:
     inline FindSumPairs(vector<int>& nums1, vector<int>& nums2) {
         ios_base::sync_with_stdio(false); cin.tie(0);
@@ -23,8 +36,7 @@ public:
     }
     
     inline int count(int tot) {
-        int result = 0, i = n1 - 1;
-        while (i >= 0 && nums1[i] >= tot) i--;
+        int result = 0, i = upper_bound(tot) - 1;
         while (i >= 0) {
             result += elements[tot - nums1[i]];
             i--;
