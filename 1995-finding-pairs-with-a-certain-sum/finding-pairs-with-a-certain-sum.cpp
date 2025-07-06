@@ -4,6 +4,7 @@ class FindSumPairs {
     int n1, n2;
 public:
     FindSumPairs(vector<int>& nums1, vector<int>& nums2) {
+        ios_base::sync_with_stdio(false); cin.tie(0);
         n1 = nums1.size(); n2 = nums2.size();
         for (int i = 0; i < n2; i++) {
             elements[nums2[i]].insert(i);
@@ -13,7 +14,7 @@ public:
         sort(this -> nums1.begin(), this -> nums1.end());
     }
     
-    void add(int index, int val) {
+    inline void add(int index, int val) {
         int prevVal = nums2[index];
         int newVal = prevVal + val;
         elements[prevVal].erase(index);
@@ -21,7 +22,7 @@ public:
         nums2[index] = newVal;
     }
     
-    int count(int tot) {
+    inline int count(int tot) {
         int result = 0, i = n1 - 1;
         while (i >= 0 && nums1[i] >= tot) i--;
         while (i >= 0) {
