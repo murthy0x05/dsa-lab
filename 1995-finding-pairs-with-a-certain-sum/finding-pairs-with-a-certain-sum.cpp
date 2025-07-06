@@ -2,7 +2,7 @@ class FindSumPairs {
     unordered_map<int, int> elements;
     vector<int> nums1, nums2;
     int n1, n2;
-    int upper_bound(int target) {
+    inline int upper_bound(int target) {
         int low = 0, high = nums1.size() - 1;
         while (low <= high) {
             int mid = (low + high) >> 1;
@@ -20,7 +20,7 @@ public:
         ios_base::sync_with_stdio(false); cin.tie(0);
         n1 = nums1.size(); n2 = nums2.size();
         for (int i = 0; i < n2; i++) {
-            elements[nums2[i]] += 1;
+            elements[nums2[i]]++;
         }
         this -> nums1 = nums1;
         this -> nums2 = nums2;
