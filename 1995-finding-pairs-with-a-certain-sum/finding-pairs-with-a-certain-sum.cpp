@@ -1,5 +1,5 @@
 class FindSumPairs {
-    unordered_map<int, unordered_set<int>> elements;
+    unordered_map<int, int> elements;
     vector<int> nums1, nums2;
     int n1, n2;
 public:
@@ -7,7 +7,7 @@ public:
         ios_base::sync_with_stdio(false); cin.tie(0);
         n1 = nums1.size(); n2 = nums2.size();
         for (int i = 0; i < n2; i++) {
-            elements[nums2[i]].insert(i);
+            elements[nums2[i]] += 1;
         }
         this -> nums1 = nums1;
         this -> nums2 = nums2;
@@ -17,8 +17,8 @@ public:
     inline void add(int index, int val) {
         int prevVal = nums2[index];
         int newVal = prevVal + val;
-        elements[prevVal].erase(index);
-        elements[newVal].insert(index);
+        elements[prevVal] -= 1;
+        elements[newVal] += 1;
         nums2[index] = newVal;
     }
     
@@ -26,7 +26,7 @@ public:
         int result = 0, i = n1 - 1;
         while (i >= 0 && nums1[i] >= tot) i--;
         while (i >= 0) {
-            result += elements[tot - nums1[i]].size();
+            result += elements[tot - nums1[i]];
             i--;
         }
 
