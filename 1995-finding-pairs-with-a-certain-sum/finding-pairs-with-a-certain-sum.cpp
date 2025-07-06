@@ -3,7 +3,7 @@ class FindSumPairs {
     vector<int> nums1, nums2;
     int n1, n2;
 public:
-    FindSumPairs(vector<int>& nums1, vector<int>& nums2) {
+    inline FindSumPairs(vector<int>& nums1, vector<int>& nums2) {
         ios_base::sync_with_stdio(false); cin.tie(0);
         n1 = nums1.size(); n2 = nums2.size();
         for (int i = 0; i < n2; i++) {
