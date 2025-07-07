@@ -17,7 +17,5 @@ public:
         }
 
         return max(dp[n - 1], dp[n - 2]);
-
-
     }
 };
