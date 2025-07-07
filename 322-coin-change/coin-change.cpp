@@ -1,6 +1,7 @@
 class Solution {
 public:
     inline int coinChange(vector<int>& coins, int amount) {
+        ios_base::sync_with_stdio(false); cin.tie(0);
         int n = coins.size();
         vector<vector<int>> dp(n + 1, vector<int>(amount + 1, 0));
         for (int i = 1; i <= amount; i++)
