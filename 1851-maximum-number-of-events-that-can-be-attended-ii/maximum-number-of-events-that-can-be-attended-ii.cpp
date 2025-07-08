@@ -1,4 +1,17 @@
 class Solution {
+    int upper_bound(auto& arr, int target) {
+        int low = 0, high = arr.size() - 1;
+        while (low <= high) {
+            int mid = low + ((high - low) >> 1);
+            if (arr[mid][0] > target) {
+                high = mid - 1;
+            } else {
+                low = mid + 1;
+            }
+        }
+
+        return low;
+    }
     int solve(auto& events, auto& mem, int pos, int k) {
         if (k == 0 || pos >= events.size()) {
             return 0;
@@ -8,7 +21,7 @@ class Solution {
         }
 
         int skip_event = solve(events, mem, pos + 1, k);
-        int next = pos + 1;
+        int next = upper_bound(events, events[pos][1]);
         while (next < events.size() && events[next][0] <= events[pos][1]) {
             next++;
         }
