@@ -13,9 +13,6 @@ public:
             }
         }
 
-        for (auto& i: freq_map) {
-            cout << i.first << " " << i.second << endl;
-        }
 
         sort(freq_map.begin(), freq_map.end(), [](const auto& a, const auto& b) {
             if (a.second != b.second) {
