@@ -1,5 +1,5 @@
 class Solution {
-    int upper_bound(auto& arr, int target) {
+    inline int upper_bound(auto& arr, int target) {
         int low = 0, high = arr.size() - 1;
         while (low <= high) {
             int mid = low + ((high - low) >> 1);
@@ -12,7 +12,7 @@ class Solution {
 
         return low;
     }
-    int solve(auto& events, auto& mem, int pos, int k) {
+    inline int solve(auto& events, auto& mem, int pos, int k) {
         if (k == 0 || pos >= events.size()) {
             return 0;
         }
@@ -31,7 +31,7 @@ class Solution {
 
     }
 public:
-    int maxValue(vector<vector<int>>& events, int k) {
+    inline int maxValue(vector<vector<int>>& events, int k) {
         int n = events.size();
         vector<vector<int>> mem(n, vector<int>(k + 1, -1));
         sort(events.begin(), events.end());
