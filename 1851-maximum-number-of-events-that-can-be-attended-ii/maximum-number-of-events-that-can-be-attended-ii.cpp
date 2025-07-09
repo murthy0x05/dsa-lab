@@ -22,9 +22,6 @@ class Solution {
 
         int skip_event = solve(events, mem, pos + 1, k);
         int next = upper_bound(events, events[pos][1]);
-        while (next < events.size() && events[next][0] <= events[pos][1]) {
-            next++;
-        }
         int attend_event = events[pos][2] + solve(events, mem, next, k - 1);
         
         return mem[pos][k] = max(skip_event, attend_event);
