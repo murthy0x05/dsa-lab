@@ -28,7 +28,8 @@ class Solution {
             include = root -> val + doDFS(root -> left, false) + doDFS(root -> right, false);
         int exclude = doDFS(root -> left) + doDFS(root -> right);
 
-        mem[root] = make_pair(-1, -1);
+        if (!mem.count(root))
+            mem[root] = make_pair(-1, -1);
         if (canInclude == true) {
             return mem[root].first = max(include, exclude);
         } else {
