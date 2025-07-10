@@ -28,17 +28,17 @@ public:
             }
         }
 
-        for (auto& row: dp) {
-            for (int ele: row) {
-                if (ele == -1) {
-                    cout << " ";
-                } else {
-                    cout << ele;
-                }
-                cout << " ";
-            }
-            cout << endl;
-        }
+        // for (auto& row: dp) {
+        //     for (int ele: row) {
+        //         if (ele == -1) {
+        //             cout << " ";
+        //         } else {
+        //             cout << ele;
+        //         }
+        //         cout << " ";
+        //     }
+        //     cout << endl;
+        // }
 
         return dp[n - 1].back();
     }
