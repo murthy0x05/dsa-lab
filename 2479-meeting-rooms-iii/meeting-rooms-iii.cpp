@@ -44,10 +44,10 @@ public:
             }
         }
 
-        for (int i: bookings) {
-            cout << i << " ";
-        }
-        cout << endl;
+        // for (int i: bookings) {
+        //     cout << i << " ";
+        // }
+        // cout << endl;
 
         int most_booked = 0;
         for (int i = 1; i < n; i++) {
