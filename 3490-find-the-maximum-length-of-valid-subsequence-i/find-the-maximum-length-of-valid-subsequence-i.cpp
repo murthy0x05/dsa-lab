@@ -2,26 +2,17 @@ class Solution {
 public:
     int maximumLength(vector<int>& nums) {
         int n = nums.size();
-        int evens = 0, odds = 0;
-        int odd_even = 1;
-        bool odd = !(nums[0] & 1);
+        vector<vector<int>> dp(2, vector<int>(2, 0));
 
+        int max_len = 0;
         for (int i = 0; i < n; i++) {
-            if (nums[i] & 1) {
-                odds += 1;
-                if (odd) {
-                    odd_even += 1;
-                    odd = false;
-                }
-            } else {
-                evens += 1;
-                if (!odd) {
-                    odd_even += 1;
-                    odd = true;
-                }
+            int curr = nums[i] % 2;
+            for (int prev = 0; prev < 2; prev++) {
+                dp[curr][prev] = dp[prev][curr] + 1;
+                max_len = max(max_len, dp[curr][prev]);
             }
         }
 
-        return max({odds, evens, odd_even});
+        return max_len;
     }
 };
