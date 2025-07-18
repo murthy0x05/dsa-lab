@@ -3,7 +3,7 @@ public:
     vector<string> findRelativeRanks(vector<int>& score) {
         int n = score.size();
 
-        auto cmp = [score](int& a, int& b) {
+        auto cmp = [&score](int& a, int& b) {
             return score[a] < score[b];
         };
         priority_queue<int, vector<int>, decltype(cmp)> pq(cmp);
