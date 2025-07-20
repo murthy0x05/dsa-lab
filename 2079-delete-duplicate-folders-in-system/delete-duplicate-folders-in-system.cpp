@@ -2,7 +2,7 @@ struct TrieNode {
     string folder;
     bool remove = false;
     map<string, TrieNode*> child;
-    TrieNode(string _folder) {
+    inline TrieNode(string _folder) {
         this -> folder = _folder;
         this -> remove = false;
     }
@@ -12,11 +12,11 @@ class Trie {
     #define ppb pop_back
 public:
     TrieNode* root = nullptr;
-    Trie() {
+    inline Trie() {
         root = new TrieNode("/");
     }
 
-    void insert(const vector<string>& path) {
+    inline void insert(const vector<string>& path) {
         TrieNode* curr = root;
         for (const string& folder: path) {
             if ((curr -> child).find(folder) == (curr -> child).end()) {
@@ -25,7 +25,7 @@ public:
             curr = curr -> child[folder];
         }
     }
-    string mark_repeating(map<string, TrieNode*>& paths, TrieNode* root) {
+    inline string mark_repeating(map<string, TrieNode*>& paths, TrieNode* root) {
         string subfolder("");
         for (auto& node: root -> child) {
             subfolder += mark_repeating(paths, node.second);
@@ -42,7 +42,7 @@ public:
 
         return "[" + root -> folder + subfolder + "]";
     }
-    bool doDFS(auto& result, auto& curr, TrieNode* root) {
+    inline bool doDFS(auto& result, auto& curr, TrieNode* root) {
         if (root -> remove) {
             return false;
         }
@@ -57,7 +57,7 @@ public:
 
         return true;
     }
-    vector<vector<string>> delete_and_return() {
+    inline vector<vector<string>> delete_and_return() {
         map<string, TrieNode*> paths;
         for (auto& [folder, node]: root -> child) {
             mark_repeating(paths, node);
@@ -79,7 +79,7 @@ public:
 
 class Solution {
 public:
-    vector<vector<string>> deleteDuplicateFolder(vector<vector<string>>& paths) {
+    inline vector<vector<string>> deleteDuplicateFolder(vector<vector<string>>& paths) {
         Trie trie;
         for (auto& path: paths) {
             trie.insert(path);
