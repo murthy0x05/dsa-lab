@@ -69,7 +69,6 @@ public:
         while (low <= high) {
             int mid = low + ((high - low) >> 1);
             if (isValid(edges, k, n, mid)) {
-                cout << "I am here..." << endl;
                 result = mid;
                 high = mid - 1;
             } else {
