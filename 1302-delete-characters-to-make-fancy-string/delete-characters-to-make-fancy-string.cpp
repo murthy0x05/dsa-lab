@@ -11,6 +11,7 @@ public:
             else 
                 ans.psb(s[i]);
         }
+        
         ans += s.substr(n - 2);
         return ans;
     }
