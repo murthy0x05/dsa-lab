@@ -1,7 +1,7 @@
 class Solution {
     #define psb push_back
 public:
-    string makeFancyString(string s) {
+    inline string makeFancyString(string s) {
         int n = s.size();
         if (n < 3) return s;
         string ans = "";
@@ -11,7 +11,7 @@ public:
             else 
                 ans.psb(s[i]);
         }
-        
+
         ans += s.substr(n - 2);
         return ans;
     }
