@@ -58,6 +58,7 @@ bool isValid(vector<vector<int>>& edges, int& k, int& n, int t) {
 class Solution {
 public:
     int minTime(int n, vector<vector<int>>& edges, int k) {
+        ios_base::sync_with_stdio(false); cin.tie(nullptr);
         if (!edges.size()) return 0;
         auto cmp = [](auto& a, auto& b) {
             return a[2] < b[2];
