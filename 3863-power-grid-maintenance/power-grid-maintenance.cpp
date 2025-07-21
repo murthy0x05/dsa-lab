@@ -1,11 +1,10 @@
 class DSU {
-    vector<int> parent, rank;
+    vector<int> parent;
     vector<set<int>> online_nodes;
 public:
     vector<bool> operational;
     DSU(int _capacity) {
         parent.resize(_capacity + 1);
-        rank.resize(_capacity + 1, 0);
         online_nodes.resize(_capacity + 1);
         operational.resize(_capacity + 1, true);
         for (int i = 0; i < _capacity + 1; i++) {
@@ -26,17 +25,12 @@ public:
             return false;
 
         int x, y;
-        if (rank[i_root] < rank[j_root]) {
+        if (online_nodes[i_root].size() < online_nodes[j_root].size()) {
             parent[i_root] = j_root;
             x = j_root;
             y = i_root;
-        } else if (rank[i_root] > rank[j_root]) {
-            parent[j_root] = i_root;
-            x = i_root;
-            y = j_root;
         } else {
             parent[j_root] = i_root;
-            rank[i_root]++;
             x = i_root;
             y = j_root;
         }
