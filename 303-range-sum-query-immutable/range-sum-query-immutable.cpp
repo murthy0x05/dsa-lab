@@ -1,7 +1,7 @@
 class NumArray {
     vector<int> prefixSum;
 public:
-    NumArray(vector<int>& nums) {
+    inline NumArray(vector<int>& nums) {
         int n = nums.size();
         prefixSum.resize(n + 1, 0);
         for (int i = 0; i < n; i++) {
@@ -9,7 +9,7 @@ public:
         }
     }
     
-    int sumRange(int left, int right) {
+    inline int sumRange(int left, int right) {
         return prefixSum[right + 1] - prefixSum[left];
     }
 };
