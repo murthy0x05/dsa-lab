@@ -13,7 +13,7 @@ public:
             }
             max_sum = max(max_sum, curr_sum);
             if (end == n) break;
-            while (start < n && seen.count(nums[end])) {
+            while (start < n && seen.find(nums[end]) != seen.end()) {
                 seen.erase(nums[start]);
                 curr_sum -= nums[start];
                 start++;
