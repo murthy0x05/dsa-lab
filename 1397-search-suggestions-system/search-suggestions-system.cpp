@@ -52,7 +52,7 @@ public:
         string word = "";
         for (int i = 0; i < n; i++) {
             if (!curr -> child[searchWord[i] - 'a']) {
-                while (i++ < n) result.psb({});
+                result.resize(n, {});
                 return result;
             } else {
                 word.psb(searchWord[i]);
