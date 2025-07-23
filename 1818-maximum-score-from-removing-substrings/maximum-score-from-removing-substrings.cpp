@@ -1,39 +1,28 @@
 class Solution {
     #define psb push_back
+    #define endl '\n'
 public:
     int maximumGain(string s, int x, int y) {
         int n = s.size();
-        stack<char> st;
-        char open, close;
-        if (x > y) {
-            open = 'a';
-            close = 'b';
-        } else {
-            open = 'b';
-            close = 'a';
-        }
-            
         int points = 0;
+
         function<int(char, char, int)> getPoints = [&s](char open, char close, int p) {
             stack<char> st;
             int points = 0;
-            int n = s.size();
+            int n = s.size(), index = -1;
 
             for (int i = 0; i < n; i++) {
-                if (!st.empty() && st.top() == open && s[i] == close) {
+                if (index > -1 && s[index] == open && s[i] == close) {
                     points += p;
-                    st.pop();
+                    index--;
                 } else {
-                    st.push(s[i]);
+                    s[++index] = s[i];
                 }
             }
 
-            s = string(st.size(), '*');
-            int index = st.size() - 1;
-            while (index >= 0) {
-                s[index--] = st.top();
-                st.pop();
-            }
+            cout << s << endl;
+            s = s.substr(0, index + 1);
+            cout << s << endl;
 
             return points;
         };
@@ -44,7 +33,6 @@ public:
             totalPoints += getPoints('b', 'a', y);
         } else {
             totalPoints += getPoints('b', 'a', y);
-            cout << s << endl;
             totalPoints += getPoints('a', 'b', x);
         }
 
