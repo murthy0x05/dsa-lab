@@ -34,7 +34,6 @@ public:
         if (root -> wordsEnded > 0) {
             result.back().psb(word);
             wordCount += 1;
-            ///
         }
 
         for (int i = 0; i < 26; i++) {
