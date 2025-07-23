@@ -7,7 +7,6 @@ public:
         int points = 0;
 
         function<int(char, char, int)> getPoints = [&s, &n](char open, char close, int p) {
-            stack<char> st;
             int points = 0, index = -1;
 
             for (int i = 0; i < n; i++) {
