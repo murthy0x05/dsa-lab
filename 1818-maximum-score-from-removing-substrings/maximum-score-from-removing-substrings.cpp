@@ -20,9 +20,7 @@ public:
                 }
             }
 
-            cout << s << endl;
             s = s.substr(0, index + 1);
-            cout << s << endl;
 
             return points;
         };
