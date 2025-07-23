@@ -6,10 +6,9 @@ public:
         int n = s.size();
         int points = 0;
 
-        function<int(char, char, int)> getPoints = [&s](char open, char close, int p) {
+        function<int(char, char, int)> getPoints = [&s, &n](char open, char close, int p) {
             stack<char> st;
-            int points = 0;
-            int n = s.size(), index = -1;
+            int points = 0, index = -1;
 
             for (int i = 0; i < n; i++) {
                 if (index > -1 && s[index] == open && s[i] == close) {
@@ -20,19 +19,18 @@ public:
                 }
             }
 
-            s = s.substr(0, index + 1);
+            n = index + 1;
 
             return points;
         };
 
+        char open = 'a', close = 'b';
+        if (y > x) swap(open, close);
         int totalPoints = 0;
-        if (x > y) {
-            totalPoints += getPoints('a', 'b', x);
-            totalPoints += getPoints('b', 'a', y);
-        } else {
-            totalPoints += getPoints('b', 'a', y);
-            totalPoints += getPoints('a', 'b', x);
-        }
+
+        totalPoints += getPoints(open, close, max(x, y));
+        totalPoints += getPoints(close, open, min(x, y));
+        
 
         return totalPoints;
     }
