@@ -1,80 +1,64 @@
 class Solution {
 public:
-    int totalXor = 0;
-    vector<vector<int>> tree;
-    vector<int> xorSubtree;
-    vector<int> parent;
-
-    void dfs(int u, int p, vector<int>& nums) {
-        xorSubtree[u] = nums[u];
-        parent[u] = p;
-        for (int v : tree[u]) {
-            if (v != p) {
-                dfs(v, u, nums);
-                xorSubtree[u] ^= xorSubtree[v];
-            }
-        }
+    // Helper function to compute the score from three component XORs
+    int calc(int a, int b, int c) {
+        return max({a, b, c}) - min({a, b, c});
     }
 
     int minimumScore(vector<int>& nums, vector<vector<int>>& edges) {
-        int n = nums.size();
-        tree.assign(n, {});
-        xorSubtree.assign(n, 0);
-        parent.assign(n, -1);
+        int n = nums.size(), time = 0;
+        vector<int> sum(n), in(n), out(n);
+        vector<vector<int>> adj(n);
 
-        // Build the tree
+        // Build tree
         for (auto& e : edges) {
-            tree[e[0]].push_back(e[1]);
-            tree[e[1]].push_back(e[0]);
+            adj[e[0]].push_back(e[1]);
+            adj[e[1]].push_back(e[0]);
         }
 
-        // First DFS to compute subtree XORs
-        dfs(0, -1, nums);
-        totalXor = xorSubtree[0];
+        // DFS to compute subtree XORs and Euler tour times
+        function<void(int, int)> dfs = [&](int node, int parent) {
+            in[node] = time++;
+            sum[node] = nums[node];
+            for (int child : adj[node]) {
+                if (child == parent) continue;
+                dfs(child, node);
+                sum[node] ^= sum[child];
+            }
+            out[node] = time;
+        };
 
-        int minScore = INT_MAX;
-        int m = edges.size();
+        dfs(0, -1); // root the tree at node 0
 
-        // Try all pairs of edges
-        for (int i = 0; i < m; ++i) {
-            for (int j = i + 1; j < m; ++j) {
-                int a = getChild(edges[i][0], edges[i][1]);
-                int b = getChild(edges[j][0], edges[j][1]);
+        int result = INT_MAX;
 
-                int x, y, z;
-
-                if (isAncestor(a, b)) {
-                    x = xorSubtree[b];
-                    y = xorSubtree[a] ^ xorSubtree[b];
-                    z = totalXor ^ xorSubtree[a];
-                } else if (isAncestor(b, a)) {
-                    x = xorSubtree[a];
-                    y = xorSubtree[b] ^ xorSubtree[a];
-                    z = totalXor ^ xorSubtree[b];
-                } else {
-                    x = xorSubtree[a];
-                    y = xorSubtree[b];
-                    z = totalXor ^ x ^ y;
+        // Try removing every pair of non-root edges (nodes u and v)
+        for (int u = 1; u < n; ++u) {
+            for (int v = u + 1; v < n; ++v) {
+                // Case 1: v is in subtree of u
+                if (in[v] > in[u] && in[v] < out[u]) {
+                    int part1 = sum[0] ^ sum[u];
+                    int part2 = sum[u] ^ sum[v];
+                    int part3 = sum[v];
+                    result = min(result, calc(part1, part2, part3));
                 }
-
-                int mx = max({x, y, z});
-                int mn = min({x, y, z});
-                minScore = min(minScore, mx - mn);
+                // Case 2: u is in subtree of v
+                else if (in[u] > in[v] && in[u] < out[v]) {
+                    int part1 = sum[0] ^ sum[v];
+                    int part2 = sum[v] ^ sum[u];
+                    int part3 = sum[u];
+                    result = min(result, calc(part1, part2, part3));
+                }
+                // Case 3: u and v are in disjoint subtrees
+                else {
+                    int part1 = sum[0] ^ sum[u] ^ sum[v];
+                    int part2 = sum[u];
+                    int part3 = sum[v];
+                    result = min(result, calc(part1, part2, part3));
+                }
             }
         }
 
-        return minScore;
-    }
-
-    int getChild(int u, int v) {
-        return parent[u] == v ? u : v;
-    }
-
-    bool isAncestor(int u, int v) {
-        while (v != -1) {
-            if (v == u) return true;
-            v = parent[v];
-        }
-        return false;
+        return result;
     }
 };
