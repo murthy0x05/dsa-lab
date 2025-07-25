@@ -4,9 +4,7 @@ public:
         int m = colsum.size();
         vector<vector<int>> matrix(2, vector<int>(m, 0));
         
-        int total = 0; int u = upper, l = lower;
         for (int i = 0; i < m; i++) {
-            total += colsum[i];
             if (colsum[i] == 2) {
                 matrix[0][i] = 1;
                 matrix[1][i] = 1;
@@ -28,7 +26,5 @@ public:
         } else {
             return {};
         }
-
-        return matrix;
     }
 };
