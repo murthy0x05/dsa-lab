@@ -1,30 +1,28 @@
 class Solution {
-    string s1, s2;
-    vector<vector<int>> mem;
-    int solve(int i, int j) {
-        if (i == -1)
-            return j + 1;
-        if (j == -1)
-            return i + 1;
-        if (mem[i][j] != -1)
-            return mem[i][j];
-
-        if (s1[i] == s2[j]){
-            return mem[i][j] = solve(i - 1, j - 1);
-        } else {
-            return mem[i][j] = 1 + min({
-                solve(i - 1, j), // case of removal
-                solve(i, j - 1), // case of insertion
-                solve(i - 1, j - 1) // case of replace
-            });
-        }
-    }
 public:
-    int minDistance(string word1, string word2) {
-        this -> s1 = word1;
-        this -> s2 = word2;
+    int minDistance(string &s1, string &s2) {
         int n = s1.size(), m = s2.size();
-        mem.assign(n, vector<int>(m, -1));
-        return solve(n - 1, m - 1);
+
+        vector<vector<int>> dp(n + 1, vector<int>(m + 1, -1));
+        for (int i = 0; i <= n; i++)
+            dp[i][0] = i;
+        for (int j = 0; j <= m; j++)
+            dp[0][j] = j;
+        
+        for (int i = 1; i <= n; i++) {
+            for (int j = 1; j <= m; j++) {
+                if (s1[i - 1] == s2[j - 1]) {
+                    dp[i][j] = dp[i - 1][j - 1];
+                } else {
+                    dp[i][j] = 1 + min({
+                        dp[i - 1][j], // case of removal
+                        dp[i][j - 1], // case of insertion
+                        dp[i-1][j-1] // case of replace
+                    });
+                }
+            }
+        }
+
+        return dp[n][m];
     }
 };
