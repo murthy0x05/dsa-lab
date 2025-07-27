@@ -25,6 +25,13 @@ public:
         this -> s2 = word2;
         int n = s1.size(), m = s2.size();
         mem.assign(n, vector<int>(m, -1));
-        return solve(n - 1, m - 1);
+        solve(n - 1, m - 1);
+        if (n == 0) {
+            return m;
+        } else if (m == 0) {
+            return n;
+        } else {
+            return mem[n - 1][m - 1];
+        }
     }
 };
