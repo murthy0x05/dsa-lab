@@ -1,24 +1,19 @@
 class Solution {
     bool isSafe(auto& state, int& row, int& col, int& n) {
         // column check
-        for (int i = 0; i < row; i++) {
+        for (int i = 0; i < row; i++)
             if (state[i][col] == 'Q')
                 return false;
-        }
 
         // negative diagonal check
-        for (int i = row - 1, j = col - 1; i >= 0 && j >= 0; i--, j--) {
-            if (state[i][j] == 'Q') {
+        for (int i = row - 1, j = col - 1; i >= 0 && j >= 0; i--, j--)
+            if (state[i][j] == 'Q')
                 return false;
-            }
-        }
 
         // positive diagonal check
-        for (int i = row - 1, j = col + 1; i >= 0 && j < n; i--, j++) {
-            if (state[i][j] == 'Q') {
+        for (int i = row - 1, j = col + 1; i >= 0 && j < n; i--, j++)
+            if (state[i][j] == 'Q')
                 return false;
-            }
-        }
         
         return true;
     }
