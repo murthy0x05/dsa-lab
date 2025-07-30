@@ -1,7 +1,7 @@
 class Solution {
-    unordered_map<long long, long long> mem;
+    unordered_map<long, int> mem;
 public:
-    int integerReplacement(long long n) {
+    int integerReplacement(long n) {
         if (n == 1) {
             return 0;
         }
