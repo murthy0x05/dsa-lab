@@ -1,10 +1,10 @@
 class Solution {
     int rows, cols;
     vector<int> dir = {-1, 0, 1, 0, -1};
-    bool isValid(int x, int y) {
+    inline bool isValid(int x, int y) {
         return x >= 0 && y >= 0 && x < rows && y < cols;
     }
-    bool search(auto& board, auto& word, int& n, int idx, int x, int y) {
+    inline bool search(auto& board, auto& word, int& n, int idx, int x, int y) {
         if (idx == n) {
             return true;
         }
@@ -25,7 +25,7 @@ class Solution {
         return false;
     }
 public:
-    bool exist(vector<vector<char>>& board, string word) {
+    inline bool exist(vector<vector<char>>& board, string word) {
         this -> rows = board.size();
         this -> cols = board[0].size();
         int n = word.size();
