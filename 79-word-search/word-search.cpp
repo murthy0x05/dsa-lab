@@ -4,7 +4,7 @@ class Solution {
     bool isValid(int x, int y) {
         return x >= 0 && y >= 0 && x < rows && y < cols;
     }
-    bool search(auto& board, auto& word,  int& n, int idx, int x, int y) {
+    bool search(auto& board, auto& word, int& n, int idx, int x, int y) {
         if (idx == n) {
             return true;
         }
