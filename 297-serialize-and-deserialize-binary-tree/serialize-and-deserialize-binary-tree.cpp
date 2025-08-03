@@ -9,7 +9,7 @@
  */
 class Codec {
 public:
-    void doDFS(TreeNode* root, string& ans) {
+    inline void doDFS(TreeNode* root, string& ans) {
         if (nullptr == root) {
             ans += '*';
         } else {
@@ -20,16 +20,15 @@ public:
     }
 
     // Encodes a tree to a single string.
-    string serialize(TreeNode* root) {
+    inline string serialize(TreeNode* root) {
         string ans = "";
         doDFS(root, ans);
-        cout << ans << endl;
         return ans;
     }
 
     // Decodes your encoded data to tree.
     int pos = 0;
-    TreeNode* deserialize(const string& data) {
+    inline TreeNode* deserialize(const string& data) {
         if ('*' == data[pos]) {
             pos++;
             return nullptr;
@@ -38,7 +37,6 @@ public:
             while (data[end] >= '0' && data[end] <= '9') {
                 end++;
             }
-            cout << data.substr(start, end - start) << endl;
             int value = stoi(data.substr(start, end - start));
             TreeNode* node = new TreeNode(value);
             pos = end + 1;
