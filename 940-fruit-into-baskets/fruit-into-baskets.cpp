@@ -18,7 +18,6 @@ public:
             } else {
                 maxCollected = max<int>(maxCollected, end - start - 1);
             }
-            cout << start << " " << end << endl;
             seen[fruits[start]] -= 1;
             if (0 == seen[fruits[start]]) {
                 seen.erase(fruits[start]);
