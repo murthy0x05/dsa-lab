@@ -8,21 +8,17 @@ public:
 
         int maxCollected = 1;
         while (end < n) {
-            while (end < n && seen.size() < 3) {
-                seen[fruits[end]] += 1;
-                end++;
+            seen[fruits[end++]] += 1;
+
+            while (seen.size() > 2) {
+                seen[fruits[start]]--;
+                if (0 == seen[fruits[start]]) {
+                    seen.erase(fruits[start]);
+                }
+                start++;
             }
 
-            if (seen.size() < 3) {
-                maxCollected = max<int>(maxCollected, end - start);
-            } else {
-                maxCollected = max<int>(maxCollected, end - start - 1);
-            }
-            seen[fruits[start]] -= 1;
-            if (0 == seen[fruits[start]]) {
-                seen.erase(fruits[start]);
-            }
-            start++;
+            maxCollected = max<int>(maxCollected, end - start);
         }
 
         return maxCollected;
