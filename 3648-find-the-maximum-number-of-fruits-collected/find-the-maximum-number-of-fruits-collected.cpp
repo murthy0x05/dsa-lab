@@ -44,7 +44,6 @@ public:
             fruits[i][i] = 0;
         }
 
-        // -1, +1, + 1, 0, +1, + 1
         dir = {{-1, 1}, {0, 1}, {1, 1}};
         horizontal = solve(fruits, dir, n - 1, 0, n - 1);
 
@@ -53,10 +52,5 @@ public:
 
 
         return diagonal + horizontal + vertical;
-
-
-
-
-        
     }
 };
