@@ -4,7 +4,7 @@ class Solution {
         return x >= 0 && y >= 0 && x < n && y < n;
     }
     int solve(auto& fruits, auto& dir, int x, int y, int moves) {
-        if (x == n - 1 && y == n - 1 && moves == 0) {
+        if (x == n - 1 && y == n - 1) {
             return 0;
         } else if (moves < 0) {
             return INT_MIN;
