@@ -25,6 +25,7 @@ public:
             }
             head = head -> next;
         }
+        
         curr -> next = nullptr;
         ListNode* result = dummy -> next;
         delete(dummy);
