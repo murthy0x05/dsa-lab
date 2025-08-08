@@ -16,7 +16,8 @@ class Solution {
     }
 public:
     double soupServings(int n) {
-        if (n >= 5000) return 1.0;
+        // if (n >= 5000) return 1.0;
+        if (n > 4450) return 1.0;
         int m = (int) std::ceil(n / 25.0);
         mem.resize(m + 1, vector<double>(m + 1, -1));
 
