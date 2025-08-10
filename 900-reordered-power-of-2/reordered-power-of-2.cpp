@@ -10,7 +10,7 @@ public:
         };
 
         string num = toSortedString(n); int bit = 0;
-        for (int bit = 0; bit < 32; bit++) {
+        for (int bit = 0; bit < 31; bit++) {
             int power = 1 << bit;
             if (num == toSortedString(power)) return true;
         }
