@@ -9,10 +9,10 @@ public:
             return s;
         };
 
-        string strN = toSortedString(n); int bit = 0;
-        for (int i = 0; i < 32; i++) {
-            int twoPower = 1 << i;
-            if (strN == toSortedString(twoPower)) return true;
+        string num = toSortedString(n); int bit = 0;
+        for (int bit = 0; bit < 32; bit++) {
+            int power = 1 << bit;
+            if (num == toSortedString(power)) return true;
         }
 
         return false;
