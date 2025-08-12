@@ -8,20 +8,17 @@ public:
         }
 
         int m = powers.size();
-        vector<int> prev(n + 1, 0);
-        prev[0] = 1;
+        vector<int> dp(n + 1, 0);
+        dp[0] = 1;
 
-        for (int i = 1; i <= m; i++) {
-            vector<int> curr(n + 1, 0);
-            for (int j = 0; j <= n; j++) {
-                curr[j] = prev[j];
-                if (j - powers[i - 1] >= 0) {
-                    curr[j] = (curr[j] + prev[j - powers[i - 1]]) % MOD;
+        for (const int& power: powers) {
+            for (int j = n; j >= power; j--) {
+                if (j - power >= 0) {
+                    dp[j] = (dp[j] + dp[j - power]) % MOD;
                 }
             }
-            prev = curr;
         }
 
-        return prev.back();
+        return dp.back();
     }
 };
