@@ -1,26 +1,28 @@
-#include <bits/stdc++.h>
-using namespace std;
-
 class Solution {
+    const int MOD = 1e9 + 7;
 public:
     int numberOfWays(int n, int x) {
-        const int MOD = 1e9 + 7;
-
         vector<int> powers;
-        for (int k = 1; pow(k, x) <= n; ++k) {
-            powers.push_back((int)pow(k, x));
+        for (int i = 1; ; i++) {
+            long long val = 1;
+            for (int j = 0; j < x; j++) val *= i;
+            if (val > n) break;
+            powers.push_back((int)val);
         }
 
         int m = powers.size();
-        vector<int> dp(n + 1, 0);
-        dp[0] = 1;
+        vector<vector<int>> dp(m + 1, vector<int>(n + 1, 0));
+        dp[0][0] = 1;
 
-        for (int p : powers) {
-            for (int s = n; s >= p; --s) {
-                dp[s] = (dp[s] + dp[s - p]) % MOD;
+        for (int i = 1; i <= m; i++) {
+            for (int j = 0; j <= n; j++) {
+                dp[i][j] = dp[i - 1][j];
+                if (j - powers[i - 1] >= 0) {
+                    dp[i][j] = (dp[i][j] + dp[i - 1][j - powers[i - 1]]) % MOD;
+                }
             }
         }
 
-        return dp[n];
+        return dp.back().back();
     }
 };
