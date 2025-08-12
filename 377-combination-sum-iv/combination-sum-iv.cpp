@@ -1,5 +1,4 @@
 class Solution {
-    using i128 = __int128_t;
 public:
     int combinationSum4(vector<int>& nums, int target) {
         int n = nums.size();
