@@ -3,26 +3,25 @@ class Solution {
 public:
     int numberOfWays(int n, int x) {
         vector<int> powers;
-        for (int i = 1; ; i++) {
-            long long val = 1;
-            for (int j = 0; j < x; j++) val *= i;
-            if (val > n) break;
-            powers.push_back((int)val);
+        for (int i = 1; pow(i, x) <= n; i++) {
+            powers.push_back((int)pow(i, x));
         }
 
         int m = powers.size();
-        vector<vector<int>> dp(m + 1, vector<int>(n + 1, 0));
-        dp[0][0] = 1;
+        vector<int> prev(n + 1, 0);
+        prev[0] = 1;
 
         for (int i = 1; i <= m; i++) {
+            vector<int> curr(n + 1, 0);
             for (int j = 0; j <= n; j++) {
-                dp[i][j] = dp[i - 1][j];
+                curr[j] = prev[j];
                 if (j - powers[i - 1] >= 0) {
-                    dp[i][j] = (dp[i][j] + dp[i - 1][j - powers[i - 1]]) % MOD;
+                    curr[j] = (curr[j] + prev[j - powers[i - 1]]) % MOD;
                 }
             }
+            prev = curr;
         }
 
-        return dp.back().back();
+        return prev.back();
     }
 };
