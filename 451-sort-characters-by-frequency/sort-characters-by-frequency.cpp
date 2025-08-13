@@ -1,7 +1,7 @@
 class Solution {
     #define pci pair<char, int>
 public:
-    string frequencySort(string s) {
+    inline string frequencySort(string s) {
         vector<pci> freqMap(256);
         for (int i = 0; i < 256; i++) {
             freqMap[i].first = (char)i;
