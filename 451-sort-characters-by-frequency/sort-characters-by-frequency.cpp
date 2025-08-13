@@ -1,19 +1,30 @@
 class Solution {
+    #define pci pair<char, int>
 public:
     string frequencySort(string s) {
-        unordered_map<char, int> freq;
-        for (const char& c: s) {
-            freq[c]++;
+        vector<pci> freqMap(256);
+        for (int i = 0; i < 256; i++) {
+            freqMap[i].first = (char)i;
+            freqMap[i].second = 0;
         }
 
-        sort(s.begin(), s.end(), [&freq](const char& a, const char& b) {
-            if (freq[a] != freq[b]) {
-                return freq[a] > freq[b];
+        for (const char& c: s) {
+            freqMap[c].second++;
+        }
+
+        sort(freqMap.begin(), freqMap.end(), [](const pci& a, const pci& b) {
+            if (a.second != b.second) {
+                return a.second > b.second;
             } else {
-                return a < b;
+                return a.first < b.first;
             }
         });
 
-        return s;
+        string result("");
+        for (auto& [c, freq]: freqMap) {
+            while (freq--) result.push_back(c);
+        }
+
+        return result;
     }
 };
