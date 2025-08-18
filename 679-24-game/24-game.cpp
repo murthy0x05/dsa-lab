@@ -1,8 +1,9 @@
 class Solution {
+    const double e = 0.00000001;
     bool backtrack(vector<double>& cards) {
         int n = cards.size();
         if (1 == n) {
-            return std::abs(cards[0] - 24.0) <= 0.01;
+            return std::abs(cards[0] - 24.0) < e;
         }
 
         for (int i = 0; i < n; i++) {
