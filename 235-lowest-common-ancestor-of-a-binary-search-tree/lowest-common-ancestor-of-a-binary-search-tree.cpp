@@ -11,28 +11,17 @@
 class Solution {
     #define Node TreeNode
     Node* solve(Node* root, Node* p, Node* q) {
-        if (root == nullptr || root == p || root == q) {
-            return root;
+        Node* node = root;
+        while (node) {
+            if (node -> val < p -> val && node -> val < q -> val)
+                node = node -> right;
+            else if (node -> val > p -> val && node -> val > q -> val)
+                node = node -> left;
+            else
+                return node;
         }
 
-        Node* left = nullptr;
-        Node* right = nullptr;
-        if (root -> val < p -> val) {
-            right = solve(root -> right, p, q);
-        } else {
-            left = solve(root -> left, p, q);
-        }
-        
-        if (root -> val < q -> val) {
-            right = solve(root -> right, p, q);
-        } else {
-            left = solve(root -> left, p, q);
-        }
-
-        if (left && right)
-            return root;
-        else
-            return left ? left : right;
+        return nullptr;
     }
 public:
     TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
