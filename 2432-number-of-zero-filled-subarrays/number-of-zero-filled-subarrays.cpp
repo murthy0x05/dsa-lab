@@ -3,8 +3,7 @@ class Solution {
 public:
     long long zeroFilledSubarray(vector<int>& nums) {
         int n = nums.size();
-        int start = 0, end = 0;
-
+        
         ll count = 0;
         int zerolen = 0;
         for (int i = 0; i < n; i++) {
