@@ -1,6 +1,6 @@
 class Solution {
     public int minimumSum(int[][] A) {
-        int res = Integer.MAX_VALUE;
+        int result = Integer.MAX_VALUE;
 
         for (int rot = 0; rot < 4; rot++) {
             int n = A.length, m = A[0].length;
@@ -15,19 +15,19 @@ class Solution {
                     }
                     int a2 = minimumArea(part2);
                     int a3 = minimumArea(part3);
-                    res = Math.min(res, a1 + a2 + a3);
+                    result = Math.min(result, a1 + a2 + a3);
                 }
                 for (int i2 = i + 1; i2 < n; i2++) {
                     int[][] part2 = Arrays.copyOfRange(A, i, i2);
                     int[][] part3 = Arrays.copyOfRange(A, i2, n);
                     int a2 = minimumArea(part2);
                     int a3 = minimumArea(part3);
-                    res = Math.min(res, a1 + a2 + a3);
+                    result = Math.min(result, a1 + a2 + a3);
                 }
             }
             A = rotate(A);
         }
-        return res;
+        return result;
     }
 
     private int minimumArea(int[][] A) {
