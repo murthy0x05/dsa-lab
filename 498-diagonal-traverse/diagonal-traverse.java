@@ -25,7 +25,6 @@ class Solution {
             posDiag = !posDiag;
         }
 
-
         return flatend;
     }
 }
