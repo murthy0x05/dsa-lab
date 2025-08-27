@@ -20,7 +20,7 @@ public:
         }
 
         int maxPrime = 0;
-        for (int i = 0; i < n; i++) {
+        for (ui i = 0; i < n; i++) {
             if (isPrime[nums[i][i]] && maxPrime < nums[i][i]) {
                 maxPrime = nums[i][i];
                 cout << i << endl;
