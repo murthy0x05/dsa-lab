@@ -23,7 +23,6 @@ public:
         for (ui i = 0; i < n; i++) {
             if (isPrime[nums[i][i]] && maxPrime < nums[i][i]) {
                 maxPrime = nums[i][i];
-                cout << i << endl;
             }
             if (isPrime[nums[i][n - i - 1]] && maxPrime < nums[i][n - i - 1]) {
                 maxPrime = nums[i][n - i - 1];
