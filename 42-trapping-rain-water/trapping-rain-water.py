@@ -12,7 +12,6 @@ class Solution:
                 water += max(0, r_max - height[r])
                 r_max = max(height[r], r_max)
                 r -= 1
-            print(l, r, water)
         
         return water
 
