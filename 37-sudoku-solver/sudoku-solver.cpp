@@ -46,6 +46,7 @@ class Solution {
                 }
             }
         } else {
+            // remember, if a number is found, go to next cell
             backtrack(board, i, j + 1);
         }
     }
