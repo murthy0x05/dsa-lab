@@ -1,8 +1,7 @@
 class Solution {
-    #pragma GCC optimize("O3,no-stack-protector")
     typedef pair<double, int> pdi;
 public:
-    double maxAverageRatio(vector<vector<int>>& classes, int extraStudents) {
+    inline double maxAverageRatio(vector<vector<int>>& classes, int extraStudents) {
         int n = classes.size();
 
         /*
