@@ -5,8 +5,6 @@ public:
             return {0};
         } else if (2 == n) {
             return {-1, 1};
-        } else if (3 == n) {
-            return {-2, -1, 3};
         } else {
             vector<int> result(n);
             if (n & 1) {
