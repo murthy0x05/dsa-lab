@@ -3,7 +3,7 @@ public:
     vector<int> getNoZeroIntegers(int n) {
         auto check = [](int x) {
             while (x > 0) {
-                if (x % 10 == 0) return false;
+                if (!(x % 10)) return false;
                 x /= 10;
             }
             return true;
@@ -15,7 +15,7 @@ public:
                 return {i, j};
             }
         }
-        
+
         return {};
     }
 };
