@@ -13,7 +13,6 @@ public:
 
         int sum = 0;
         for (int i = n - forget + 1; i <= n; i++) {
-            cout << dp[i] << endl;
             sum = (sum + dp[i]) % MOD;
         }
 
