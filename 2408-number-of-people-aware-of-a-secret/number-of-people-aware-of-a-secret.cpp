@@ -5,10 +5,13 @@ public:
         vector<int> dp(n + 1, 0);
         dp[1] = 1;
 
-        for (int i = 2; i <= n; i++) {
-            for (int j = i - delay; j >= i - forget + 1 && j > 0; j--) {
-                dp[i] = (dp[i] + dp[j]) % MOD;
-            }
+        for (int i = 2, ws = 0; i <= n; i++) {
+            if (i - delay > 0)
+                ws = (ws + dp[i - delay]) % MOD;
+            if (i - forget > 0)
+                ws = (ws - dp[i - forget] + MOD) % MOD;
+            
+            dp[i] = (dp[i] + ws) % MOD;
         }
 
         int sum = 0;
