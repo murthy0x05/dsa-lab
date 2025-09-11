@@ -17,7 +17,7 @@ public:
         int ptr = 'A';
         for (char& c: s) {
             if (c == '*') {
-                while (ptr < 256 && counts[ptr] == 0) ptr++;
+                while (ptr < 'z' + 1 && counts[ptr] == 0) ptr++;
                 c = (char)ptr;
                 counts[ptr]--;
             }
