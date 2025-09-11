@@ -1,14 +1,17 @@
 class Solution {
-    unordered_set<char> vowels;
 public:
     string sortVowels(string s) {
         int n = s.size();
         int counts[256] = {0};
         
-        vowels = {'A', 'E', 'I', 'O', 'U', 'a', 'e', 'i', 'o', 'u'};
+        vector<bool> isVowel(58, false);
+        string vowels = "aeiouAEIOU";
+        for (const char& vowel: vowels) {
+            isVowel[vowel - 'A'] = true;
+        }
 
         for (char& c: s) {
-            if (vowels.count(c) > 0) {
+            if (isVowel[c - 'A']) {
                 counts[c]++;
                 c = '*';
             }
@@ -22,6 +25,8 @@ public:
                 counts[ptr]--;
             }
         }
+
+        cout << (int)'z' << endl;
 
         return s;
     }
