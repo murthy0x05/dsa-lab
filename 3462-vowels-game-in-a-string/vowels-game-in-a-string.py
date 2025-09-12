@@ -5,8 +5,8 @@ class Solution(object):
         :rtype: bool
         """
         vowels = [vowel for vowel in "aeiou"]
-        for c in s:
-            if c in vowels:
+        for vowel in vowels:
+            if vowel in s:
                 return True
         
         return False
