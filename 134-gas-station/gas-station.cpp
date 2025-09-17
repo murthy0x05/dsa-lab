@@ -6,7 +6,6 @@ public:
         for (int i = 0, len = 0, sum = 0; i < 2 * n - 1; i++) {
             int idx = i % n;
             if ((sum += gas[idx] - cost[idx]) >= 0) {
-                // sum += gas[idx] - cost[idx];
                 if (++len == n) return (idx + 1) % n;
             } else {
                 len = sum = 0;
