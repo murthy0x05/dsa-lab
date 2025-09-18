@@ -1,3 +1,5 @@
+#pragma GCC optimize("O3,unroll-loops,Ofast")
+
 class TaskManager {
     #define pii pair<int, int>
     struct cmp {
