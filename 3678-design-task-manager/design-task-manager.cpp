@@ -14,7 +14,7 @@ class TaskManager {
     unordered_map<int, vector<int>> tasks;
     set<pii, cmp> s;
 public:
-    TaskManager(vector<vector<int>>& t) {
+    inline TaskManager(vector<vector<int>>& t) {
         int n = t.size();
         
         for (vector<int>& task: t) {
@@ -23,23 +23,23 @@ public:
         }
     }
     
-    void add(int userId, int taskId, int priority) {
+    inline void add(int userId, int taskId, int priority) {
         tasks[taskId] = {userId, priority};
         s.insert({taskId, priority});
     }
     
-    void edit(int taskId, int newPriority) {
+    inline void edit(int taskId, int newPriority) {
         s.erase({taskId, tasks[taskId][1]});
         tasks[taskId][1] = newPriority;
         s.insert({taskId, newPriority});
     }
     
-    void rmv(int taskId) {
+    inline void rmv(int taskId) {
         s.erase({taskId, tasks[taskId][1]});
         tasks[taskId] = {-1, -1};
     }
     
-    int execTop() {
+    inline int execTop() {
         if (s.size()) {
             int uid = tasks[(*s.begin()).first][0];
             s.erase(s.begin());
