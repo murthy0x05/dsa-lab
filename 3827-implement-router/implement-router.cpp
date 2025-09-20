@@ -138,3 +138,10 @@ public:
         return destinations[destination]->getCount(startTime, endTime);
     }
 };
+
+struct FastIO {
+    FastIO() {
+        ios::sync_with_stdio(false);
+        cin.tie(nullptr);
+    }
+} fastio;
