@@ -111,10 +111,8 @@ public:
         }
 
         if ((int)q.size() == maxMemory) {
-            vector<int> firstPacket = q.front();
+            destinations[q.front()[1]] -> removePacket();
             q.pop();
-            Destination* dest1 = destinations[firstPacket[1]];
-            dest1->removePacket();
         }
 
         dest->addPacket(timestamp, source);
@@ -138,10 +136,3 @@ public:
         return destinations[destination]->getCount(startTime, endTime);
     }
 };
-
-struct FastIO {
-    FastIO() {
-        ios::sync_with_stdio(false);
-        cin.tie(nullptr);
-    }
-} fastio;
