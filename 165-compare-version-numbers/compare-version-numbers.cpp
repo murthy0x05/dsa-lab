@@ -27,9 +27,7 @@ public:
                 sj = ej + 1;
                 ej = v2.find('.', sj);
             } 
-
-            cout << r1 << ' ' << r2 << endl;
-
+            
             if (r1 < r2) return -1;
             if (r1 > r2) return 1;   
         }
