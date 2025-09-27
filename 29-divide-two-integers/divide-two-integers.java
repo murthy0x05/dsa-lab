@@ -4,13 +4,16 @@ class Solution {
         long d = Math.abs((long) divisor);
 
         if (0 == n) return 0;
-
-        long q = 0;
-        while (n >= d) {
-            int p = 0;
-            while ((d << p) <= n) p++;
-            n -= d << (p - 1);
-            q += 1L << (p - 1);
+        
+        long q = n;
+        if (1 != d) {
+            q = 0;
+            while (n >= d) {
+                int p = 0;
+                while ((d << p) <= n) p++;
+                n -= d << (p - 1);
+                q += 1L << (p - 1);
+            }
         }
 
         if ((dividend < 0) ^ (divisor < 0)) {
