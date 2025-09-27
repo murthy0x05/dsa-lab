@@ -17,8 +17,7 @@ public:
                 n -= (d << (p - 1));
             }
         }
-
-        cout << sign << endl;
+        
         q *= sign;
         if (q > INT_MAX) q = INT_MAX;
         if (q < INT_MIN) q = INT_MIN;
