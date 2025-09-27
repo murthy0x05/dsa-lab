@@ -17,18 +17,11 @@ public:
                 n -= (d << (p - 1));
             }
         }
-        
+
         q *= sign;
         if (q > INT_MAX) q = INT_MAX;
         if (q < INT_MIN) q = INT_MIN;
 
         return q;
-
-        // 1 * 2^3 + 0 * 2^2 + 1 * 2^1 + 0 * 2^0
-        // 1 * 2^1 + 1 * 2^0d
-
-        
-        
-
     }
 };
