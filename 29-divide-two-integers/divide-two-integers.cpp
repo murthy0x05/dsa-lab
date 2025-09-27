@@ -18,7 +18,9 @@ public:
             }
         }
 
-        q *= sign;
+        if (-1 == sign) {
+            q = ~q + 1;
+        }
         if (q > INT_MAX) q = INT_MAX;
         if (q < INT_MIN) q = INT_MIN;
 
