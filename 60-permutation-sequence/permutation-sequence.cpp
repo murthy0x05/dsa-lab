@@ -1,18 +1,4 @@
 class Solution {
-    // vector<int> nums;
-    // vector<ll> factorial;
-    // void solve(string& ans, int k) {
-    //     if (k <= 0) {
-    //         return ;
-    //     }
-
-    //     int n = nums.size();
-    //     int curr = k / factorial[n - 1];
-    //     ans.push_back(nums[curr - 1] + '0');
-    //     nums.erase(nums.begin() + (curr - 1));
-    //     k -= curr * factorial[n - 1];
-    //     solve(ans, k);
-    // }
     using ll = long long;
 public:
     string getPermutation(int n, int k) {
