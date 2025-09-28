@@ -1,16 +1,12 @@
 class Solution {
     public int largestPerimeter(int[] nums) {
         int n = nums.length;
-        nums = Arrays.stream(nums)
-                     .boxed()
-                     .sorted((a, b) -> b - a)
-                     .mapToInt(Integer::intValue)
-                     .toArray();
+        Arrays.sort(nums);
 
         int result = 0;
-        for (int i = 0; i < n - 2; i++) {
-            if (nums[i + 2] + nums[i + 1] > nums[i]) {
-                result = Math.max(result, nums[i] + nums[i+1] + nums[i+2]);
+        for (int i = n - 1; i >= 2; i--) {
+            if (nums[i - 1] + nums[i - 2] > nums[i]) {
+                result = Math.max(result, nums[i] + nums[i-1] + nums[i-2]);
             }
         }
 
