@@ -5,7 +5,10 @@ public:
 
         for (int i = n - 2; i >= 0; i--) {
             for (int j = 0; j <= i; j++) {
-                nums[j] = (nums[j] + nums[j + 1]) % 10;
+                nums[j] = nums[j] + nums[j + 1];
+                if (nums[j] >= 10) {
+                    nums[j] -= 10;
+                }
             }
         }
 
