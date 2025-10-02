@@ -1,17 +1,14 @@
 class Solution {
     public int maxBottlesDrunk(int numBottles, int numExchange) {
-        for (int result = 0, empty = 0; numBottles >= 0;) {
-            result += numBottles;
-            empty += numBottles;
+        for (int result = numBottles, empty = numBottles; numBottles >= 0;) {
             if (empty < numExchange) {
                 return result;
             }
 
-            for (numBottles = 0; empty >= numExchange;) {
-                empty -= numExchange;
-                numBottles++;
-                numExchange++;
-            }
+            empty -= numExchange;
+            result++;
+            empty++;
+            numExchange++;
         }
 
         return 0;
