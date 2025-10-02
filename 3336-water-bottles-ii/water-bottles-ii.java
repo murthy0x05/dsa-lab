@@ -5,9 +5,8 @@ class Solution {
                 return result;
             }
 
-            empty -= numExchange;
+            empty -= numExchange - 1;
             result++;
-            empty++;
             numExchange++;
         }
 
