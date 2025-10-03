@@ -1,7 +1,6 @@
 class Solution {
 public:
     int trapRainWater(vector<vector<int>>& heightMap) {
-        if (heightMap.empty() || heightMap[0].empty()) return 0;
         int m = heightMap.size(), n = heightMap[0].size();
         vector<vector<bool>> visited(m, vector<bool>(n, false));
         priority_queue<pair<int, pair<int, int>>, vector<pair<int, pair<int, int>>>, greater<>> minHeap;
