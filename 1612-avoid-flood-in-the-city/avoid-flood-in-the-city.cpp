@@ -27,8 +27,6 @@ public:
             }
         }
 
-        cout << seen.count(2) << endl;
-
         for (const int& id: ids) {
             result[id] = 1;
         }
