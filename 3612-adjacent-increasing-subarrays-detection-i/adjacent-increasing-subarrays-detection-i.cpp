@@ -13,7 +13,6 @@ public:
         }
 
         for (int i = 0; i < n - 2 * k + 1; i++) {
-            cout << i << endl;
             if (inc[i] >= k && inc[i + k] >= k) {
                 return true;
             }
