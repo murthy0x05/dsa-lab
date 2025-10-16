@@ -3,7 +3,7 @@ public:
     int findSmallestInteger(vector<int>& nums, int value) {
         int n = nums.size();
 
-        unordered_map<int, int> counts;
+        vector<int> counts(value + 1, 0);
         for (int i = 0; i < n; i++) {
             counts[((nums[i] % value) + value) % value]++;
         }
