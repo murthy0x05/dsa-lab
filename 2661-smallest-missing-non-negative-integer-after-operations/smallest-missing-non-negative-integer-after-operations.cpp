@@ -5,8 +5,7 @@ public:
 
         unordered_map<int, int> counts;
         for (int i = 0; i < n; i++) {
-            int mod = ((nums[i] % value) + value) % value;
-            counts[mod]++;
+            counts[((nums[i] % value) + value) % value]++;
         }
 
         for (int i = 0; i < n; i++) {
