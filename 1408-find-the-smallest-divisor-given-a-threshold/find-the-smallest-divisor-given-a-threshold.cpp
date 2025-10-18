@@ -3,7 +3,7 @@ class Solution {
     bool feasible(const vector<int>& nums, const int& threshold, const int& mid) {
         int result = 0;
         for (int i = 0; i < n; i++) {
-            result += ceil(1.0 * nums[i] / mid);
+            result += (nums[i] + mid - 1) / mid;
         }
 
         return result <= threshold;
