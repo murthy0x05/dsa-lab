@@ -17,9 +17,7 @@ public:
                 end = min<int>(1e5, i + k);
             result = max(result,
                          min(numOperations, ps[end] - ps[start] - (ps[i] - ps[i - 1])) + (ps[i] - ps[i - 1]));
-            if (i == 15) {
-                cout << min(numOperations, ps[end] - ps[start] - ps[i]) << endl;
-            }
+
         }
 
         return result;       
