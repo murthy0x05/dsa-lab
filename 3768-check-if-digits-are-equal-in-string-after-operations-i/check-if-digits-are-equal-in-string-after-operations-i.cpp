@@ -8,8 +8,7 @@ public:
                 s[j] = (s[j] + s[j + 1] - 2 * '0') % 10 + '0';
             }
         }
-
-        cout << s << endl;
+        
         return s[0] == s[1];
     }
 };
