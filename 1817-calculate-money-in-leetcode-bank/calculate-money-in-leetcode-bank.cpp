@@ -7,6 +7,5 @@ public:
         total += rem * q + (rem * (rem + 1)) / 2; 
 
         return total;
-
     }
 };
