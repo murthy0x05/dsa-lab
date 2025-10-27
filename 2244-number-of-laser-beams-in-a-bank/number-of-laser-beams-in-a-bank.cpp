@@ -28,8 +28,6 @@ public:
 
             result += curr * prev;
             prev = curr;
-
-            cout << result << i << endl;
         }
 
         return result;
