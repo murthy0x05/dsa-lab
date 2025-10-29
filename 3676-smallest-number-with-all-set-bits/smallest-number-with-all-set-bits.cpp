@@ -4,9 +4,7 @@ public:
         int number = 0;
         long long p = 1;
         while (n > 0) {
-            if (n || 0) {
-                number += p;
-            }
+            number += p;
             n /= 2;
             p *= 2;
         }
