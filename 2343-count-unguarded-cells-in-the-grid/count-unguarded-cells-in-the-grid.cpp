@@ -1,52 +1,43 @@
 class Solution {
-public:
-    void dfs(int r, int c, string dir, vector<vector<int>>& vis, map<pair<int, int>, int>& mp){
-        int n = vis.size();
-        int m = vis[0].size();
-        if(r<0 || c<0 || r>=n || c>=m) return;
-        if(mp.find({r, c})!=mp.end()) return;
-        else vis[r][c] = 1;
-
-        if(dir == "r"){
-            dfs(r, c+1, "r", vis, mp);
+    int r, c;
+    void mark(vector<vector<int>>& visited, int x, int y) {
+        for (int i = x + 1; i < r && visited[i][y] != -1; i++) {
+            visited[i][y] = 1;
         }
-        if(dir == "l"){
-            dfs(r, c-1, "l", vis, mp);
+        for (int i = x - 1; i >= 0 && visited[i][y] != -1; i--) {
+            visited[i][y] = 1;
         }
-        if(dir == "u"){
-            dfs(r-1, c, "u", vis, mp);
+        for (int j = y + 1; j < c && visited[x][j] != -1; j++) {
+            visited[x][j] = 1;
         }
-        if(dir == "d"){
-            dfs(r+1, c, "d", vis, mp);
+        for (int j = y - 1; j >= 0 && visited[x][j] != -1; j--) {
+            visited[x][j] = 1;
         }
     }
+public:
     int countUnguarded(int m, int n, vector<vector<int>>& guards, vector<vector<int>>& walls) {
-        vector<vector<int>> vis(m, vector<int> (n));
-        queue<pair<int, int>> q;
-        map<pair<int, int>, int> mp;
-        for(auto it: guards){
-            q.push({it[0], it[1]});
-            mp[{it[0], it[1]}]++;
-            vis[it[0]][it[1]] = 1;
+        this -> r = m;
+        this -> c = n;
+        vector<vector<int>> visited(m, vector<int>(n, 0));
+
+        for (const vector<int>& wall: walls) {
+            visited[wall[0]][wall[1]] = -1;
         }
-        for(auto it: walls) {
-            mp[{it[0], it[1]}]++;
-            vis[it[0]][it[1]] = 1;
+        for (const vector<int>& guard: guards) {
+            visited[guard[0]][guard[1]] = -1;
         }
-        for(auto it: guards){
-            int r = it[0];
-            int c = it[1];
-            dfs(r, c+1, "r", vis, mp);
-            dfs(r, c-1, "l", vis, mp);
-            dfs(r+1, c, "d", vis, mp);
-            dfs(r-1, c, "u", vis, mp);
+
+        for (const vector<int>& guard: guards) {
+            mark(visited, guard[0], guard[1]);
         }
-        int cnt=0;
-        for(int i=0; i<m; i++){
-            for(int j=0; j<n; j++){
-                if(vis[i][j] == 0) cnt++;
+
+        int result = 0;
+        for (int i = 0; i < r; i++) {
+            for (int j = 0; j < c; j++) {
+                result += (visited[i][j] == 0);
             }
         }
-        return cnt;
+
+        return result;
     }
 };
