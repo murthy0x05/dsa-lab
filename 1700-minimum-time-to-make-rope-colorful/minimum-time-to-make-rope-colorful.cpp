@@ -2,6 +2,7 @@ class Solution {
 public:
     int minCost(string colors, vector<int>& neededTime) {
         neededTime.push_back(10001);
+        colors.push_back('@');
         int n = neededTime.size();
 
         int cost = 0;
