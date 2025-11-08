@@ -1,38 +1,65 @@
 class Solution {
- public:
-  long long maxPower(vector<int>& stations, int r, int k) {
-    long left = ranges::min(stations);
-    long right = accumulate(stations.begin(), stations.end(), 0L) + k + 1;
-    while (left < right) {
-      const long mid = (left + right) / 2;
-      if (check(stations, r, k, mid))
-        left = mid + 1;
-      else
-        right = mid;
-    }
-    return left - 1;
-  }
+    typedef long long ll;
+    int n;
+    bool feasible(vector<ll>& df, vector<ll>& added, const int& r, const int& k, ll& mid) {
+        for (int i = 0; i < n + 2; i++) {
+            added[i] = 0;
+        }
 
- private:
-  bool check(vector<int> stations, int r, int additionalStations,
-             long minPower) {
-    const int n = stations.size();
-    long power = accumulate(stations.begin(), stations.begin() + r, 0L);
+        ll i = 0, more = k;
+        while (i < n) {
+            added[i + 1] += added[i];
+            if (df[i] + added[i + 1] >= mid) {
+                i++;
+            } else {
+                ll built = mid - (df[i] + added[i + 1]);
+                if (built > more) {
+                    return false;
+                } else {
+                    more -= built;
+                    added[i + 1] += built;
+                    added[min<ll>(n + 1, i + 2 * r + 2)] -= built;
+                    i++;
+                }
+            }
+        }
 
-    for (int i = 0; i < n; ++i) {
-      if (i + r < n)
-        power += stations[i + r];
-      if (power < minPower) {
-        const long requiredPower = minPower - power;
-        if (requiredPower > additionalStations)
-          return false;
-        stations[min(n - 1, i + r)] += requiredPower;
-        additionalStations -= requiredPower;
-        power += requiredPower;
-      }
-      if (i - r >= 0)
-        power -= stations[i - r];
+        return i == n;
     }
-    return true;
-  }
+public:
+    long long maxPower(vector<int>& stations, int r, int k) {
+        this -> n = stations.size();
+
+        vector<ll> df(n + 1, 0);
+        vector<ll> added(n + 2, 0);
+        for (int i = 0; i < n; i++) {
+            df[max(0, i - r)] += stations[i];
+            df[min(n, i + r + 1)] -= stations[i];
+        }
+
+        ll low = stations[0], high = k + stations[0];
+        for (int i = 1; i < n; i++) {
+            df[i] += df[i - 1];
+            low = min<ll>(low, stations[i]);
+            high += stations[i];
+        }
+
+        ll result = low;
+        while (low <= high) {
+            ll mid = low + ((high - low) >> 1);
+            if (feasible(df, added, r, k, mid)) {
+                result = mid;
+                low = mid + 1;
+            } else {
+                high = mid - 1;
+            }
+        }
+
+        for (int i = 0; i <= n; i++) {
+            cout << df[i] << ' ';
+        }
+        cout << endl;
+
+        return result;
+    }
 };
