@@ -55,11 +55,6 @@ public:
             }
         }
 
-        for (int i = 0; i <= n; i++) {
-            cout << df[i] << ' ';
-        }
-        cout << endl;
-
         return result;
     }
 };
