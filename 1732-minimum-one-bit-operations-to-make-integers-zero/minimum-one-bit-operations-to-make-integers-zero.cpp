@@ -1,9 +1,14 @@
 class Solution {
 public:
     int minimumOneBitOperations(int n) {
-        int res;
-        for (res = 0; n > 0; n &= n - 1)
-            res = -(res + (n ^ (n - 1)));
-        return abs(res);
+        if (n == 0) return 0;
+
+        int val = 0, x = n;
+        while (x) {
+            val = x;
+            x = x & (x - 1);
+        }
+
+        return val * 2LL - 1 - minimumOneBitOperations(val ^ n);
     }
 };
