@@ -1,6 +1,6 @@
 class Solution {
 public:
-    int maxOperations(const string& s) {
+    inline int maxOperations(const string& s) {
         int n = s.size();
 
         int ops = 0, po = s[0] - '0';
