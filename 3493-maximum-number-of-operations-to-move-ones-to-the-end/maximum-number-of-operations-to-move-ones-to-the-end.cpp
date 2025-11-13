@@ -13,6 +13,6 @@ public:
             }
         }
 
-        return (s.back() - '0') ? ops : ops + po;
+        return (s[n - 1] - '0') ? ops : ops + po;
     }
 };
