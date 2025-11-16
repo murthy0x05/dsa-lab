@@ -8,10 +8,10 @@ public:
         int i = 0, j = 0;
         ll result = 0;
         while (i < n) {
+            j++;
             if (s[i] == '0') {
-                i++; j++;
+                i++;
             } else {
-                j++;
                 while (j < n && s[i] == s[j]) {
                     j++;
                 }
