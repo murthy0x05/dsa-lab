@@ -49,10 +49,10 @@ public:
             }
         }
 
-        for (int& a: arr) {
-            cout << a << ' ';
-        }
-        cout << endl;
+        // for (int& a: arr) {
+        //     cout << a << ' ';
+        // }
+        // cout << endl;
 
         return arr.size();
     }
