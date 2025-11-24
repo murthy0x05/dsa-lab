@@ -5,9 +5,7 @@ public:
 
         vector<bool> result(n, false);
         for (int i = 0, val = 0; i < n; i++) {
-            val *= 2;
-            val += nums[i];
-            val %= 5;
+            val = ((val * 2) + nums[i]) % 5;
             result[i] = (val == 0);
         }
 
