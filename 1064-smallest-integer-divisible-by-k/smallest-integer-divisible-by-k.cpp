@@ -1,6 +1,8 @@
 class Solution {
 public:
     int smallestRepunitDivByK(int k) {
+        if (!(k % 2) || !(k % 5)) return -1;
+
         int mod = 0;
 
         // unordered_set<int> seen;
