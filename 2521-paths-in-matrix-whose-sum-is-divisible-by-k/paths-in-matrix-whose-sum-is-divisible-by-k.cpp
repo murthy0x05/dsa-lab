@@ -1,27 +1,46 @@
 class Solution {
-    // inline int solve(auto& grid, const int& k, int x, int y) {
-    //     if (0 == x && 0 == y) {
-    //         if (mem[x][y][grid[x][y] % k] != -1) {
-    //             return mem[x][y][grid[x][y] % k];
-    //         }
-            
-    //         int total = 
-
-    //     }
-    // }
+    const int MOD = 1e9 + 7;
 public:
     int numberOfPaths(vector<vector<int>>& grid, int K) {
-        int m = grid.size();
-        int n = grid[0].size();
-        int mod = 1e9 + 7;
-        vector<vector<vector<int>>> dp(m, vector<vector<int>>(n, vector<int>(K, -1)));
-        function<int(int,int,int)> solve = [&](int x,int y,int k){
-            if(x >= m || y >= n) return 0;
-            if(x == m - 1 && y == n - 1) return ((k + grid[m - 1][n - 1]) % K == 0) ? 1 : 0;
-            if(dp[x][y][k] != -1) return dp[x][y][k];
-            int total = solve(x + 1,y,(k + grid[x][y]) % K) + solve(x,y + 1,(k + grid[x][y]) % K);
-            return dp[x][y][k] = total % mod;
-        };
-        return solve(0, 0, 0);
+        int r = grid.size();
+        int c = grid[0].size();
+
+        vector<vector<vector<int>>> dp(r, vector<vector<int>>(c, vector<int>(K, 0)));
+        for (int i = 0; i < r; i++) {
+            for (int j = 0; j < c; j++) {
+                if (i == 0 && j == 0) {
+                    dp[i][j][grid[i][j] % K]++;
+                } else if (i == 0) {
+                    for (int k = 0; k < K; k++) {
+                        if (dp[i][j - 1][k] > 0) {
+                            dp[i][j][(grid[i][j] + k) % K] += dp[i][j - 1][k];
+                            dp[i][j][(grid[i][j] + k) % K] %= MOD;
+                        }
+                    }
+                } else if (j == 0) {
+                    for (int k = 0; k < K; k++) {
+                        if (dp[i - 1][j][k] > 0) {
+                            dp[i][j][(grid[i][j] + k) % K] += dp[i - 1][j][k];
+                            dp[i][j][(grid[i][j] + k) % K] %= MOD;
+                        }
+                    }
+                } else {
+                    for (int k = 0; k < K; k++) {
+                        if (dp[i][j - 1][k] > 0) {
+                            dp[i][j][(grid[i][j] + k) % K] += dp[i][j - 1][k];
+                            dp[i][j][(grid[i][j] + k) % K] %= MOD;
+                        }
+                    }
+                    for (int k = 0; k < K; k++) {
+                        if (dp[i - 1][j][k] > 0) {
+                            dp[i][j][(grid[i][j] + k) % K] += dp[i - 1][j][k];
+                            dp[i][j][(grid[i][j] + k) % K] %= MOD;
+                        }
+                    }
+                }
+            }
+        }
+
+        return dp[r - 1][c - 1][0];
     }
 };
