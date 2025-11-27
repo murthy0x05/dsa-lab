@@ -30,8 +30,6 @@ public:
                         curr[j][(grid[i][j] + k) % K] += curr[j - 1][k];
                         curr[j][(grid[i][j] + k) % K] %= MOD;
                     }
-                }
-                for (int k = 0; k < K; k++) {
                     if (prev[j][k] > 0) {
                         curr[j][(grid[i][j] + k) % K] += prev[j][k];
                         curr[j][(grid[i][j] + k) % K] %= MOD;
