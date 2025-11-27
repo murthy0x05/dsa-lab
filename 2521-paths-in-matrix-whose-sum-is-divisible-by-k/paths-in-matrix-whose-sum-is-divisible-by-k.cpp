@@ -5,42 +5,42 @@ public:
         int r = grid.size();
         int c = grid[0].size();
 
-        vector<vector<vector<int>>> dp(r, vector<vector<int>>(c, vector<int>(K, 0)));
-        for (int i = 0; i < r; i++) {
-            for (int j = 0; j < c; j++) {
-                if (i == 0 && j == 0) {
-                    dp[i][j][grid[i][j] % K]++;
-                } else if (i == 0) {
-                    for (int k = 0; k < K; k++) {
-                        if (dp[i][j - 1][k] > 0) {
-                            dp[i][j][(grid[i][j] + k) % K] += dp[i][j - 1][k];
-                            dp[i][j][(grid[i][j] + k) % K] %= MOD;
-                        }
-                    }
-                } else if (j == 0) {
-                    for (int k = 0; k < K; k++) {
-                        if (dp[i - 1][j][k] > 0) {
-                            dp[i][j][(grid[i][j] + k) % K] += dp[i - 1][j][k];
-                            dp[i][j][(grid[i][j] + k) % K] %= MOD;
-                        }
-                    }
-                } else {
-                    for (int k = 0; k < K; k++) {
-                        if (dp[i][j - 1][k] > 0) {
-                            dp[i][j][(grid[i][j] + k) % K] += dp[i][j - 1][k];
-                            dp[i][j][(grid[i][j] + k) % K] %= MOD;
-                        }
-                    }
-                    for (int k = 0; k < K; k++) {
-                        if (dp[i - 1][j][k] > 0) {
-                            dp[i][j][(grid[i][j] + k) % K] += dp[i - 1][j][k];
-                            dp[i][j][(grid[i][j] + k) % K] %= MOD;
-                        }
-                    }
+        vector<vector<int>> prev(c, vector<int>(K, 0));
+        prev[0][(grid[0][0] % K)]++;
+        for (int i = 1; i < c; i++) {
+            for (int k = 0; k < K; k++) {
+                if (prev[i - 1][k] > 0) {
+                    prev[i][(grid[0][i] + k) % K] += prev[i - 1][k];
+                    prev[i][(grid[0][i] + k) % K] %= MOD;
                 }
             }
         }
 
-        return dp[r - 1][c - 1][0];
+        for (int i = 1; i < r; i++) {
+            vector<vector<int>> curr(c, vector<int>(K, 0));
+            for (int k = 0; k < K; k++) {
+                if (prev[0][k] > 0) {
+                    curr[0][(grid[i][0] + k) % K] += prev[0][k];
+                    curr[0][(grid[i][0] + k) % K] %= MOD;
+                }
+            }
+            for (int j = 1; j < c; j++) {
+                for (int k = 0; k < K; k++) {
+                    if (curr[j - 1][k] > 0) {
+                        curr[j][(grid[i][j] + k) % K] += curr[j - 1][k];
+                        curr[j][(grid[i][j] + k) % K] %= MOD;
+                    }
+                }
+                for (int k = 0; k < K; k++) {
+                    if (prev[j][k] > 0) {
+                        curr[j][(grid[i][j] + k) % K] += prev[j][k];
+                        curr[j][(grid[i][j] + k) % K] %= MOD;
+                    }
+                }
+            }
+            prev = curr;
+        }
+
+        return prev.back().front();
     }
 };
