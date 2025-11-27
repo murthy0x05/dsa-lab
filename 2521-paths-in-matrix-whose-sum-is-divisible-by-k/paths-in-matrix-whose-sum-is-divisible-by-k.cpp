@@ -36,7 +36,7 @@ public:
                     }
                 }
             }
-            prev = curr;
+            swap(prev, curr);
         }
 
         return prev.back().front();
