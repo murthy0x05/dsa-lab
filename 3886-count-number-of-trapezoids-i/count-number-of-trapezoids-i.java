@@ -1,7 +1,13 @@
 class Solution {
     private final int MOD = (int)1e9 + 7;
     public int countTrapezoids(int[][] points) {
-        Arrays.sort(points, (a, b) -> { return a[1] - b[1]; });
+        Arrays.sort(points, (a, b) -> {
+            if (a[1] != b[1]) {
+                return Integer.compare(a[1], b[1]);
+            } else {
+                return Integer.compare(a[0], b[0]);
+            }
+        });
 
         int n = points.length;
         int sum = 0,
