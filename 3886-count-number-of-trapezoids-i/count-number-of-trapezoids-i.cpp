@@ -12,8 +12,8 @@ public:
         });
 
         int n = points.size();
-        ll sum = 0LL;
-        ll result = 0LL;
+        int sum = 0,
+            result = 0;
         for (int i = 1, s; i < n; i++) {
             s = 1;
             while (i < n && points[i][1] == points[i - 1][1]) {
@@ -22,9 +22,9 @@ public:
             }
 
             if (s >= 2) {
-                ll sC2 = (s * 1LL * (s - 1)) / 2;
-                result = (result + ((sum % MOD) * (sC2 % MOD))) % MOD;
-                sum += sC2;
+                int sC2 = ((s * 1LL * (s - 1)) / 2) % MOD;
+                result = (result + (sum * 1LL * sC2)) % MOD;
+                sum = (sum + sC2) % MOD;
             }
         }
 
