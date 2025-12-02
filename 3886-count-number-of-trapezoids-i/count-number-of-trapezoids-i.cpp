@@ -12,20 +12,19 @@ public:
         });
 
         int n = points.size();
-        ll prev = 0LL;
         ll sum = 0LL;
         ll result = 0LL;
-        for (int i = 1, curr; i < n; i++) {
-            curr = 1;
+        for (int i = 1, s; i < n; i++) {
+            s = 1;
             while (i < n && points[i][1] == points[i - 1][1]) {
                 i++;
-                curr++;
+                s++;
             }
 
-            if (curr >= 2) {
-                ll nC2 = (curr * 1LL * (curr - 1)) / 2;
-                result = (result + ((sum % MOD) * (nC2 % MOD))) % MOD;
-                sum += nC2;
+            if (s >= 2) {
+                ll sC2 = (s * 1LL * (s - 1)) / 2;
+                result = (result + ((sum % MOD) * (sC2 % MOD))) % MOD;
+                sum += sC2;
             }
         }
 
