@@ -10,12 +10,11 @@ public:
         int stacked = directions[0] != 'S';
         for (int i = 1; i < n; i++) {
             if (directions[i] == 'L') {
-                if (st.top() == 'R') {
-                    collisions += 2;
-                    collisions += (stacked - 1);
-                    st.pop();
-                    st.push('S');
-                } else if (st.top() == 'S') {
+                if (st.top() != 'L') {
+                    if (st.top() == 'R') {
+                        collisions += stacked;
+                        st.pop(); st.push('S');
+                    }
                     collisions += 1;
                 }
             } else if (directions[i] == 'R') {
@@ -25,11 +24,10 @@ public:
                 st.push('R');
                 stacked++;
             } else {
-                if (st.top() == 'R') {
-                    collisions += 1;
-                    collisions += stacked - 1;
-                }
                 if (st.top() != 'S') {
+                    if (st.top() == 'R') {
+                        collisions += stacked;
+                    }
                     st.push('S');
                 }
             }
