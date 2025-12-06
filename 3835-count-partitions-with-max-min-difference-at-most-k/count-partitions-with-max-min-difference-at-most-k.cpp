@@ -10,9 +10,7 @@ public:
         dp[0]   = 1;
         psum[0] = 1;
 
-        //increasing
         deque<int> inc;
-        //decreasing
         deque<int> dec;
 
         for(int r = 0, l = 0; r < n; r ++){
