@@ -2,23 +2,19 @@ class Solution {
 public:
     int countTriples(int n) {
         int result = 0;
-        for (int i = 1; i < n; i++) {
-            int a2 = i * i;
-            int low = i + 1, high = n;
-            while (low <= high) {
-                int mid = low + ((high - low) >> 1);
-                int c = sqrt(a2 + (mid * mid));
-                if (c <= n) {
-                    low = mid + 1;
-                } else {
-                    high = mid - 1;
-                }
-            }
-            for (int j = i + 1; j < low; j++) {
-                int sqr = sqrt((i * i) + (j * j));
-                if (sqr <= n && sqr * sqr == ((i * i) + (j * j))) {
+        for (int c = 3; c <= n; c++) {
+            int l = 1, r = c - 1;
+            
+            int needed = c * c;
+            while (l < r) {
+                int sum = l * l + r * r;
+                if (needed == sum) {
                     result += 2;
-                    cout << i << ' ' << j << ' ' << sqr << endl;
+                    l++; r--;
+                } else if (sum < needed) {
+                    l++;
+                } else {
+                    r--;
                 }
             }
         }
