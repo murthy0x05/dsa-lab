@@ -4,17 +4,18 @@ public:
 
     int countPermutations(vector<int>& complexity) {
         int n = complexity.size();
-        int first = complexity[0];
 
         for (int i = 1; i < n; i++) {
-            if (complexity[i] <= first) return 0;
+            if (complexity[i] <= complexity[0]) {
+                return 0;
+            }
         }
 
-        long long fact = 1;
-        for (int i = 2; i < n; i++) {
-            fact = (fact * i) % MOD;
+        int perms = 1;
+        for (int i = 2; i <= n - 1; i++) {
+            perms = (perms * 1LL * i) % MOD;
         }
 
-        return (int)fact;
+        return perms;
     }
 };
