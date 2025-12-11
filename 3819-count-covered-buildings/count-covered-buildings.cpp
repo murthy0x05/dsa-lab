@@ -19,7 +19,10 @@ public:
         }
 
         int result = 0;
-        for (int i = 1; i < sz - 1; i++) {
+
+        while (i < sz && buildings[i][0] == buildings[i - 1][0]) i++;
+        while (sz >= 2 && buildings[sz - 1][0] == buildings[sz - 2][0]) sz--;
+        for (; i < sz - 1; i++) {
             if (buildings[i][0] == buildings[i - 1][0] &&
                 buildings[i][0] == buildings[i + 1][0] &&
                 buildings[i][0] > y[buildings[i][1]].first &&
