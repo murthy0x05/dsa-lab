@@ -10,8 +10,8 @@ public:
         });
 
         int i = 1,
-            sz = buildings.size(),
-            len = 1;
+            sz = buildings.size();
+
         vector<pair<int, int>> y(n + 1, make_pair(INT_MAX, INT_MIN));
         for (int i = 0; i < sz; i++) {
             y[buildings[i][1]].first = min(y[buildings[i][1]].first, buildings[i][0]);
