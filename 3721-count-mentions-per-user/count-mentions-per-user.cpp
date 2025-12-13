@@ -14,7 +14,6 @@ public:
         vector<int> online(n, -1);
         vector<int> result(n, 0);
         for (int i = 0, len = events.size(); i < len; i++) {
-            cout << events[i][0] << ' ' << events[i][1] << ' ' << events[i][2] << endl;
             if (events[i][0][0] == 'M') {
                 if (events[i][2][0] == 'H') {
                     for (int j = 0; j < n; j++) {
