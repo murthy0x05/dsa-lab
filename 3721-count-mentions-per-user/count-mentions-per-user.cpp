@@ -13,6 +13,7 @@ public:
 
         vector<int> online(n, -1);
         vector<int> result(n, 0);
+        int all = 0;
         for (int i = 0, len = events.size(); i < len; i++) {
             if (events[i][0][0] == 'M') {
                 if (events[i][2][0] == 'H') {
@@ -22,9 +23,7 @@ public:
                         }
                     }
                 } else if (events[i][2][0] == 'A') {
-                    for (int j = 0; j < n; j++) {
-                        result[j]++;
-                    }
+                    all++;
                 } else {
                     stringstream ss(events[i][2]);
                     for (string id; ss >> id; ) {
@@ -34,6 +33,9 @@ public:
             } else {
                 online[stoi(events[i][2])] = stoi(events[i][1]) + 60;
             }
+        }
+        for (int j = 0; j < n; j++) {
+            result[j] += all;
         }
 
         return result;
