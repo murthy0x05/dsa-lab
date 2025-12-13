@@ -7,7 +7,11 @@ public:
             if (a1 != b1) {
                 return a1 < b1;
             } else {
-                return a[0][0] > b[0][0];
+                if (a[0][0] == 'O') {
+                    return true;
+                } else {
+                    return false;
+                }
             }
         });
 
