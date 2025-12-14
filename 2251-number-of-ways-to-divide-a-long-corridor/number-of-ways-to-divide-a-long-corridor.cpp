@@ -8,9 +8,7 @@ public:
             seats = 0;
         for (int i = 0, ways = 1; i < n; i++) {
             if (seats < 2) {
-                if (corridor[i] == 'S') {
-                    seats++;
-                }
+                seats += (corridor[i] == 'S');
             } else {
                 if (corridor[i] == 'P') {
                     ways++;
