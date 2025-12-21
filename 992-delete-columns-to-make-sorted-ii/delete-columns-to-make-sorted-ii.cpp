@@ -16,7 +16,6 @@ public:
             for (int i = rs + 1; i <= re; i++) {
                 if (strs[i - 1][col] != strs[i][col]) {
                     if (strs[i - 1][col] > strs[i][col]) {
-                        cout << "Row: " << i << ' ' << "Col: " << col << endl;
                         deleted.insert(col);
                         dfs(col + 1, rs, re);
                         return (int)deleted.size();
