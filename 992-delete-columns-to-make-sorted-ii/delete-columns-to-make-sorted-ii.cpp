@@ -1,30 +1,32 @@
 class Solution {
 public:
     int minDeletionSize(vector<string>& strs) {
-        int count=0;
-        vector<bool> sorted(strs.size() - 1, false);
+        int r = strs.size();
+        int c = strs[0].size();
 
-        for(int i=0;i<strs[0].size();i++){
-            bool check=true;
-            
-            for(int j=0;j<strs.size()-1;j++){
-                if(!sorted[j] && strs[j][i]>strs[j+1][i]){
-                    check=false;
+        int deleted = 0;
+        vector<bool> sorted(r, false);
+        for (int j = 0; j < c; j++) {
+            bool flag = true;
+            for (int i = 1; i < r; i++) {
+                if (!sorted[i] && strs[i - 1][j] > strs[i][j]) {
+                    flag = false;
                     break;
                 }
             }
 
-            if(check==false){
-                count++;
+            if (!flag) {
+                deleted++;
                 continue;
-            } 
-            
-            for(int j=0;j<strs.size()-1;j++){
-                if(!sorted[j] && strs[j][i]<strs[j+1][i]){
-                    sorted[j]=true;
+            }
+
+            for (int i = 1; i < r; i++) {
+                if (!sorted[i] && strs[i - 1][j] < strs[i][j]) {
+                    sorted[i] = true;
                 }
             }
         }
-        return count;
+
+        return deleted;
     }
 };
