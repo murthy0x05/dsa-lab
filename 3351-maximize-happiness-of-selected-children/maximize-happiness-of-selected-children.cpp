@@ -4,7 +4,7 @@ public:
     long long maximumHappinessSum(vector<int>& happiness, int k) {
         int n = happiness.size();
 
-        sort(happiness.rbegin(), rend(happiness));
+        sort(happiness.rbegin(), happiness.rend());
 
         ll result = 0;
         for (int i = 0, ki = 0; i < k; i++) {
