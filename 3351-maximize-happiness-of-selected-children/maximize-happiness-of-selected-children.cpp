@@ -6,10 +6,10 @@ public:
 
         sort(happiness.rbegin(), happiness.rend());
 
-        ll result = 0;
+        ll result = 0LL;
         for (int i = 0, ki = 0; i < k; i++) {
             if (ki >= happiness[i]) {
-                return result;
+                break;
             }
             result += happiness[i] - ki;
             ki++;
