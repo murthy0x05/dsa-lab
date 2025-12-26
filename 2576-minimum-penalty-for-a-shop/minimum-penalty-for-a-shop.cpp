@@ -10,12 +10,12 @@ public:
         for (int i = 0; i < n; i++) {
             if (customers[i] == 'Y') {
                 yes--;
+                if (penalty > yes + no) {
+                    penalty = yes + no;
+                    hour = i;
+                }
             } else {
                 no++;
-            }
-            if (penalty > yes + no) {
-                penalty = yes + no;
-                hour = i;
             }
         }
 
