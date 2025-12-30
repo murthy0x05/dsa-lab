@@ -12,12 +12,11 @@ public:
             if (bottom.size() == 1) {
                 return true;
             } else if (idx >= bottom.size() - 1) {
-                string now = next;
-                string newone = "";
-                if (mem.count(now)) {
-                    return mem[now];
+                if (mem.count(next)) {
+                    return mem[next];
                 } else {
-                    return mem[now] = backtrack(newone, now, 0); 
+                    string nextlayer = "";
+                    return mem[next] = backtrack(nextlayer, next, 0); 
                 }
             } else if (blocks.count(bottom.substr(idx, 2))) {
                 bool result = false;
