@@ -2,7 +2,7 @@ class Solution {
 public:
     static bool isMagic(int i, int j, int a, int b, int c, int d, 
         vector<vector<int>>& grid){
-            
+
         return (a+grid[i-1][j]+b==15) &&
         (a+grid[i][j-1]+c==15) && (b+grid[i][j+1]+d==15) &&
         (c+grid[i+1][j]+d==15);
@@ -20,7 +20,7 @@ public:
                 int a=grid[i-1][j-1], b=grid[i-1][j+1], c=grid[i+1][j-1], d=grid[i+1][j+1];
                 unsigned corner=(1<<a)|(1<<b)|(1<<c)|(1<<d);
 
-                if (corner==cornerMask && a+d==10 && b+c==10 ) 
+                if (corner==cornerMask && a+d==10 && b+c==10) 
                     cnt+=isMagic(i, j, a,b,c,d, grid);
             }
         }
