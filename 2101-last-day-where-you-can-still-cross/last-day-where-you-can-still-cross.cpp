@@ -1,8 +1,7 @@
 class Solution {
+    vector<int> dir = {-1, 0, 1, 0, -1};
 public:
     int latestDayToCross(int r, int c, vector<vector<int>>& cells) {
-        vector<int> dir = {-1, 0, 1, 0, -1};
-
         function<bool(vector<vector<int>>&, int, int)> dfs = [&](vector<vector<int>>& matrix, int x, int y) {
             if (x == r - 1) return true;
 
