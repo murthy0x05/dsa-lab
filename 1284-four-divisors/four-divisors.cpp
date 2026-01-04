@@ -22,7 +22,6 @@ public:
                 }
             }
             total += (factors == 4) * (sum);
-            cout << i << ' ' << total << endl;
         }
 
         return total;
