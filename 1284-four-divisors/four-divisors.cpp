@@ -5,7 +5,7 @@ public:
 
         int total = 0;
         for (int i = 0; i < n; i++) {
-            if (nums[i] < 3) continue;
+            if (nums[i] < 6) continue;
             int factors = 2, sum = 1 + nums[i];
             for (int j = 2, root = sqrt(nums[i]); j <= root; j++) {
                 if (nums[i] % j == 0) {
