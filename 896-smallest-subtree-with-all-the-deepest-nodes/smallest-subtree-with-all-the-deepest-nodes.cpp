@@ -12,25 +12,23 @@
 class Solution {
 public:
     TreeNode* subtreeWithAllDeepest(TreeNode* root) {
-        return solve(root).first;
-    }
-private:
-    #define Node TreeNode
-    #define pni pair<Node*, int>
-    pni solve(Node* node) {
-        if (node == nullptr) {
-            return make_pair(nullptr, 0);
-        }
+        function<pair<TreeNode*, int>(TreeNode*, int)> dfs = [&](TreeNode* node, int len) {
+            pair<TreeNode*, int> left, right;
+            left = right = make_pair(node, len);
 
-        pni left = solve(node -> left);
-        pni right = solve(node -> right);
+            if (node -> left)
+                left = dfs(node -> left, len + 1);
+            if (node -> right)
+                right = dfs(node -> right, len + 1);
 
-        if (left.second < right.second) {
-            return {right.first, right.second + 1};
-        } else if (left.second > right.second) {
-            return {left.first, left.second + 1};
-        } else {
-            return {node, left.second + 1};
-        }
+            if (left.second == right.second) {
+                return make_pair(node, left.second);
+            }
+            if (left.second > right.second) {
+                return left;
+            }
+            return right;
+        };
+        return dfs(root, 0).first;
     }
 };
