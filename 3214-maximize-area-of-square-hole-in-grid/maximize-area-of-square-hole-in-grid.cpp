@@ -25,8 +25,6 @@ public:
         hmax = max(hmax, hcur);
         vmax = max(vmax, vcur);
 
-        cout << hmax << ' ' << vmax << endl;
-
         int maxsq = min(hmax, vmax) + 1;
         return maxsq * maxsq;
     }
