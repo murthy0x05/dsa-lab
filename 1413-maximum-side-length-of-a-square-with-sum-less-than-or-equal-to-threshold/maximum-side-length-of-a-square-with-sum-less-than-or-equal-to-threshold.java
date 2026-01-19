@@ -23,9 +23,7 @@ class Solution {
         }
 
         int result = 0;
-        int low = 1, high = Math.min(r, c);
-        while (low <= high) {
-            int mid = low + ((high - low) >> 1);
+        for (int low = 1, high = Math.min(r, c), mid; low <= high && (mid = low + ((high - low) >> 1)) > 0;) {
             if (feasible(ps, mid, threshold)) {
                 result = mid;
                 low = mid + 1;
