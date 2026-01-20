@@ -1,6 +1,6 @@
 class Solution {
 public:
-    vector<int> minBitwiseArray(vector<int>& nums) {
+    inline vector<int> minBitwiseArray(vector<int>& nums) {
         int n = nums.size();
 
         vector<int> arr; arr.reserve(n);
