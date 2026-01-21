@@ -29,7 +29,20 @@ public:
 
             return make_pair(gst, bst -> val + left.second + right.second);
         };
+        
+        int total = 0;
+        function<void(TreeNode*)> po = [&](TreeNode* bst) {
+            if (!bst) {
+                return ;
+            }
 
-        return dfs(root, 0).first;
+            po(bst -> right);
+            bst -> val = (total += bst -> val);
+            po(bst -> left);
+        };
+
+        // return dfs(root, 0).first;
+        po(root);
+        return root;
     }
 };
