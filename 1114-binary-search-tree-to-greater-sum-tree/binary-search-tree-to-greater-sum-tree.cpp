@@ -41,8 +41,24 @@ public:
             po(bst -> left);
         };
 
+        int sum = 0;
+        function<TreeNode*(TreeNode*)> post = [&](TreeNode* bst) {
+            if (!bst) {
+                return (TreeNode*) nullptr;
+            }
+
+            TreeNode* gst = new TreeNode();
+
+            gst -> right = post(bst -> right);
+            gst -> val = (sum += bst -> val);
+            gst -> left = post(bst -> left);
+
+            return gst;
+        };
+
         // return dfs(root, 0).first;
-        po(root);
-        return root;
+        // po(root);
+
+        return post(root);
     }
 };
