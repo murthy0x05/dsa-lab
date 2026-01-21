@@ -3,23 +3,26 @@ public:
     bool validPalindrome(string s) {
         int n = s.size();
 
-        int misplaced = 0;
-        function<bool(int, int)> dfs = [&] (int l, int r) {
-            if (l >= r) {
-                return true;
-            }
-
-            if (s[l] == s[r]) {
-                return dfs(l + 1, r - 1);
-            } else {
-                if (misplaced > 0) {
+        function<bool(int, int)> check = [&] (int l, int r) {
+            while (l < r) {
+                if (s[l] != s[r]) {
                     return false;
                 }
-                misplaced++;
-                return dfs(l + 1, r) || dfs(l, r - 1);
+                l++; r--;
             }
+
+            return true;
         };
 
-        return dfs(0, n - 1);
+        int l = 0, r = n - 1;
+        while (l < r) {
+            if (s[l] == s[r]) {
+                l++; r--;
+            } else {
+                return check(l + 1, r) || check(l, r - 1);
+            }
+        }
+
+        return true;
     }
 };
