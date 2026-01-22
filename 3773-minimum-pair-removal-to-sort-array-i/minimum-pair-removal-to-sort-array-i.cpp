@@ -33,7 +33,7 @@ public:
         for (int i = 0; i < n - 1; i++)
             pq.push(state(nums[i] + nums[i + 1], i));
 
-        cout << "Value of Invalid: " << invalid << endl;
+        // cout << "Value of Invalid: " << invalid << endl;
 
         int result = 0;
         while (invalid > 0) {
