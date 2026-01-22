@@ -41,10 +41,11 @@ public:
 
             if (its[curr.id] == (list<ele>::iterator)nullptr) continue;
             list<ele>::iterator a1 = its[curr.id];
-            list<ele>::iterator a2 = next(a1),
-                                a3 = next(a2), // sos
-                                a0 = prev(a1); // sos
+            list<ele>::iterator a2 = next(a1);
             if (a2 == dll.end()) continue;
+
+            list<ele>::iterator a3 = next(a2),
+                                a0 = prev(a1); // sos
 
             if (curr.sum == (a1 -> val + a2 -> val)) {
                 invalid -= (a1 -> val > a2 -> val);
@@ -58,14 +59,14 @@ public:
 
                 its[a2 -> id] = (list<ele>::iterator)nullptr;
 
-                cout << "curr idx: " << a1 -> id << ", and value is: " << a1 -> val << endl;
-                cout << "a2 idx: " << a2 -> id << ", and value is: " << a2 -> val << endl;
+                // cout << "curr idx: " << a1 -> id << ", and value is: " << a1 -> val << endl;
+                // cout << "a2 idx: " << a2 -> id << ", and value is: " << a2 -> val << endl;
                 a1 -> val += a2 -> val;
 
                 dll.erase(a2);
 
-                for (auto [val, id]: dll) cout << val << ' ';
-                cout << endl;
+                // for (auto [val, id]: dll) cout << val << ' ';
+                // cout << endl;
 
                 if (a1 != dll.begin()) {
                     pq.push(state(a0 -> val + a1 -> val, a0 -> id));
