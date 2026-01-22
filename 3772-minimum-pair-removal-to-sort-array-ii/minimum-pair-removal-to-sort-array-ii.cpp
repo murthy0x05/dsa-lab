@@ -13,13 +13,14 @@ class Solution {
 public:
     inline int minimumPairRemoval(vector<int>& nums) {
         int n = nums.size();
+        if (n <= 1) return 0;
         
         int invalid = 0;
         for (int i = 0; i < n - 1; i++)
             invalid += nums[i] > nums[i + 1];
 
         list<ele> dll;
-        vector<list<ele>::iterator> its;
+        vector<list<ele>::iterator> its; its.reserve(n);
         for (int i = 0; i < n; i++) {
             dll.push_back(ele(nums[i], i));
             its.push_back(--dll.end());
