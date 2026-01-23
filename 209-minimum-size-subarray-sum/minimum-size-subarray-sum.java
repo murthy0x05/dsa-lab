@@ -1,6 +1,6 @@
 class Solution {
     public int minSubArrayLen(int target, int[] nums) {
-        int n = nums.length;
+        final int n = nums.length;
 
         Function<Integer, Boolean> feasible = (Integer K) -> {
             int sum = 0;
