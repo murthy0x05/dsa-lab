@@ -9,9 +9,6 @@ public:
                 counts[s[r] - 'A']++;
                 if (r - l + 1 == size) {
                     int max_occ = *max_element(counts.begin(), counts.end());
-                    if (size == 4) {
-                        cout << "MO: " << max_occ << endl;
-                    }
                     if (size - max_occ <= k) {
                         return true;
                     }
