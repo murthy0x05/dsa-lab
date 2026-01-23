@@ -2,23 +2,34 @@ class Solution {
     public int minSubArrayLen(int target, int[] nums) {
         int n = nums.length;
 
-        int start = 0, end = 0;
-        int len = n + 1;
-        int sum = 0;
-        while (start < n) {
-            while (end < n && sum < target) {
-                sum += nums[end];
-                end++;
+        Function<Integer, Boolean> feasible = (Integer K) -> {
+            int sum = 0;
+            for (int l = 0, r = 0; r < n; r++) {
+                sum += nums[r];
+                if (r - l + 1 == K) {
+                    if (sum >= target) {
+                        return true;
+                    }
+                    sum -= nums[l];
+                    l++;
+                }
             }
 
-            if (sum >= target) {
-                len = Math.min(len, end - start);
-            }
+            return false;
+        };
 
-            sum -= nums[start];
-            start++;
+        int len = 0;
+        int low = 1, high = n;
+        while (low <= high) {
+            int mid = low + ((high - low) >> 1);
+            if (feasible.apply(mid)) {
+                len = mid;
+                high = mid - 1;
+            } else {
+                low = mid + 1;
+            }
         }
 
-        return (len == n + 1) ? 0 : len;
+        return len;
     }
 }
