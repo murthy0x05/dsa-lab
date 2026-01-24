@@ -1,6 +1,6 @@
 class Solution {
     private static int[] counts;
-    public Solution() {
+    static {
         counts = new int[100001];
     }
     public int minPairSum(int[] nums) {
