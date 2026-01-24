@@ -14,12 +14,6 @@ class Solution {
             r = Math.max(r, nums[i]);
         }
 
-        for (int i = 1; i < 6; i++) {
-            for (int j = 0; j < counts[i]; j++) {
-                System.out.print(i + " ");
-            }
-        }
-
         int result = l + l;
         while (l <= r) {
             if (0 == counts[l]) l++;
