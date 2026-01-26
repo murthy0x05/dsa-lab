@@ -12,10 +12,9 @@ public:
             if (arr[i] - arr[i - 1] == abs_diff) {
                 result[len++] = {arr[i - 1], arr[i]};
             } else if (arr[i] - arr[i - 1] < abs_diff) {
-                abs_diff = arr[i] - arr[i - 1];
                 len = 0;
-                result[len] = {arr[i - 1], arr[i]};
-                len++;
+                abs_diff = arr[i] - arr[i - 1];
+                result[len++] = {arr[i - 1], arr[i]};
             }
         }
 
