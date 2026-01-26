@@ -5,20 +5,17 @@ public:
         sort(arr.begin(), arr.end());
 
         int abs_diff = arr.back() - arr.front() + 1;
-        vector<vector<int>> result; result.reserve(n - 1);
-        result.assign(n - 1, vector<int>(0));
-        int len = 0;
+        vector<vector<int>> result;
         for (int i = 1; i < n; i++) {
-            if (arr[i] - arr[i - 1] == abs_diff) {
-                result[len++] = {arr[i - 1], arr[i]};
+            if (arr[i] - arr[i - 1] > abs_diff) {
+                continue;
             } else if (arr[i] - arr[i - 1] < abs_diff) {
-                len = 0;
                 abs_diff = arr[i] - arr[i - 1];
-                result[len++] = {arr[i - 1], arr[i]};
+                result.clear();
             }
+            result.push_back({arr[i - 1], arr[i]});
         }
 
-        result.resize(len);
         return result;
     }
 };
