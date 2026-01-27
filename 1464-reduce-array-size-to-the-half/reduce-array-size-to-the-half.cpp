@@ -9,7 +9,7 @@ public:
             counts[arr[i]]++;
         }
 
-        sort(counts.rbegin(), counts.rend());
+        sort(counts.begin(), counts.end(), greater<int>());
         int result = 0;
         for (int i = 0, removed = 0; removed < (n >> 1); i++) {
             removed += counts[i];
