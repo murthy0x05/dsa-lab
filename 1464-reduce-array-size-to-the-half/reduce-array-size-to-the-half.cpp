@@ -11,7 +11,7 @@ public:
 
         sort(counts.begin(), counts.end(), greater<int>());
         int result = 0;
-        for (int i = 0, removed = 0; removed < (n >> 1); i++) {
+        for (int i = 0, removed = 0, half = (n >> 1); removed < half; i++) {
             removed += counts[i];
             result++;
         }
