@@ -1,35 +1,37 @@
 class Solution {
-    struct box {
-        int id, wt;
-        box(int i, int w) : id(i), wt(w) {}
-        bool operator < (const box& other) const {
-            return wt > other.wt;
-        }
-    };
+    using pii = pair<int, int>;
+    const int INF = 2e8;
 public:
-    int minCost(int n, vector<vector<int>>& edges) {
+    inline int minCost(int n, vector<vector<int>>& edges) {
         int V = n, E = edges.size();
-        vector<vector<box>> adjlist(V);
+        vector<vector<pii>> adjlist(V);
 
         for (vector<int>& edge: edges) {
-            adjlist[edge[0]].push_back(box(edge[1], edge[2]));
-            adjlist[edge[1]].push_back(box(edge[0], 2 * edge[2]));
+            adjlist[edge[0]].push_back(make_pair(edge[1], edge[2]));
+            adjlist[edge[1]].push_back(make_pair(edge[0], 2 * edge[2]));
         }
 
-        vector<int> d(V, 2e8);
-        priority_queue<box> pq;
-        pq.push(box(0, 0));
+        vector<int> d(V, INF);
+        auto cmp = [](const pii& a, const pii& b) {
+            if (a.second != b.second) {
+                return a.second > b.second; 
+            } else {
+                return a.first > b.first;
+            }
+        };
+        priority_queue<pii, vector<pii>, decltype(cmp)> pq(cmp);
+        pq.push(make_pair(0, 0));
         d[0] = 0;
-
+    
         while (!pq.empty()) {
-            box curr = pq.top(); pq.pop();
-            if (curr.wt > d[curr.id]) {
+            pii curr = pq.top(); pq.pop();
+            if (curr.second > d[curr.first]) {
                 continue;
             }
-            for (box& nbr: adjlist[curr.id]) {
-                if (d[curr.id] + nbr.wt < d[nbr.id]) {
-                    d[nbr.id] = d[curr.id] + nbr.wt;
-                    pq.push(box(nbr.id, d[nbr.id]));
+            for (pii& nbr: adjlist[curr.first]) {
+                if (d[curr.first] + nbr.second < d[nbr.first]) {
+                    d[nbr.first] = d[curr.first] + nbr.second;
+                    pq.push(make_pair(nbr.first, d[nbr.first]));
                 }
             }
         }
