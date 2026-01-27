@@ -2,7 +2,9 @@ class Solution {
 public:
     int minSetSize(vector<int>& arr) {
         int n = arr.size();
-        vector<int> counts(1e5 + 1, 0);
+        vector<int> counts;
+        counts.reserve(1e5 + 1);
+        counts.assign(1e5 + 1, 0);
         for (int i = 0; i < n; i++) {
             counts[arr[i]]++;
         }
