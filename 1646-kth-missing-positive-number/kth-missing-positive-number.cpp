@@ -19,6 +19,7 @@ public:
             }
         }
         
-        return arr[high] + k - ((arr[high] - 1) - high);
+        // return arr[high] + k - ((arr[high] - 1) - high);
+        return k + high + 1;
     }
 };
