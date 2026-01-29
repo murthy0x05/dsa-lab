@@ -10,47 +10,20 @@
  * };
  */
 class Solution {
-    int maxSum = INT_MIN;
+    int pathSum = -1001;
+    int dfs(TreeNode* node) {
+        if (!node) return 0;
+
+        int left = max(0, dfs(node -> left));
+        int right = max(0, dfs(node -> right));
+
+        pathSum = max(pathSum, (left + node -> val + right));
+        return max(left, right) + node -> val;
+    }
 public:
-    int solve(TreeNode* root) {
-        if (!root) {
-            return 0;
-        }
-
-        int leftSum = solve(root -> left);
-        int rightSum = solve(root -> right);
-        //         if (root -> left) {
-        //     leftSum = solve(root -> left);            
-        // } // 2
-        // if (root -> right) {
-        //     rightSum = solve(root -> right);
-        // } // 3
-        
-        int down = root -> val + max(leftSum, rightSum);
-        int up = root ->  val + leftSum + rightSum;
-        maxSum = max({maxSum, down, up, root -> val});
-        return max(root -> val, down);
-
-        // if (leftSum < rightSum) {
-        //     if (leftSum + root -> val > 0) {
-        //         maxSum = max(maxSum, leftSum + root -> val + rightSum);
-        //         maxSum = max(maxSum, leftSum);
-        //     } else {
-        //         maxSum = max(maxSum, rightSum);
-        //     }
-        // } else {
-        //     if (rightSum + root -> val > 0) {
-        //         maxSum = max(maxSum, rightSum + root -> val + leftSum);
-        //         maxSum = max(maxSum, rightSum);
-        //     } else {
-        //         maxSum = max(maxSum, leftSum);
-        //     }
-        // }
-
-        // return max(leftSum + root -> val, rightSum + root -> val);
-    }
     int maxPathSum(TreeNode* root) {
-        solve(root);
-        return maxSum;
+        dfs(root);
+        return pathSum;
     }
+    
 };
