@@ -20,8 +20,12 @@ public:
                        sides[3] == need;
             }
 
+            unordered_set<int> seen;
             for (int i = 0; i < 4; i++) {
                 if (sides[i] + matchsticks[id] > need) {
+                    continue;
+                }
+                if (seen.count(sides[i])) {
                     continue;
                 }
 
@@ -29,6 +33,7 @@ public:
                 if (dfs(id + 1)) return true;
                 sides[i] -= matchsticks[id];
 
+                seen.insert(sides[i]);
                 // if (sides[i] == 0) break; 
             }
 
