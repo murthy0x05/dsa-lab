@@ -16,16 +16,10 @@ public:
             }
         }
 
-        for (int i = 0; i < n; i++) {
-            cout << p[i] << ' ';
-        }
-        cout << endl;
-
         function<string(int, int)> decode = [&] (int l, int r) {
             string result("");
 
             for (int i = l; i <= r; i++) {
-                cout << i << endl;
                 if (s[i] >= 'a' && s[i] <= 'z') {
                     result.push_back(s[i]);
                 } else {
