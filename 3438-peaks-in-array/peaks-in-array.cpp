@@ -45,7 +45,7 @@ public:
     SegmentTree (vector<int>& arr) {
         n = arr.size();
         int h = ceil(log2(n));
-        size = 4 * n;
+        size = 2 * (1 << h) - 1;
         tree.resize(size, 0);
         build(arr, 0, 0, n - 1);
     }
