@@ -56,31 +56,6 @@ public:
                     i = r;
                     continue;
                 }
-
-                ll lp_neg = 0;
-                ll curr_neg = 0;
-                for (int x = l; x < p - 1; x++) {
-                    curr_neg += nums[x];
-                    lp_neg = min(lp_neg, curr_neg);
-                }
-
-                ll qr_neg = 0;
-                curr_neg = 0;
-                for (int x = r - 1; x > q + 1; x--) {
-                    curr_neg += nums[x];
-                    qr_neg = min(qr_neg, curr_neg);
-                }
-
-
-                result = max(result, (lp - lp_neg) + pq + (qr - qr_neg));
-                // cout << l << " -> " << p << " = " << lp << " - " << lp_neg << endl;
-                // cout << p << " -> " << q << " = " << pq << endl;
-                // cout << q << " -> " << r << " = " << qr << " - " << qr_neg << endl;
-                // cout << lp + pq + qr << endl;
-                
-                l = q; p = r;
-                lp = qr;
-                i = r;
             } else {
                 p--;
                 lp -= nums[p];
@@ -109,33 +84,31 @@ public:
                     i = r;
                     continue;
                 }
-
-                ll lp_neg = 0;
-                ll curr_neg = 0;
-                for (int x = l; x < p - 1; x++) {
-                    curr_neg += nums[x];
-                    lp_neg = min(lp_neg, curr_neg);
-                }
-
-                ll qr_neg = 0;
-                curr_neg = 0;
-                for (int x = r - 1; x > q + 1; x--) {
-                    curr_neg += nums[x];
-                    qr_neg = min(qr_neg, curr_neg);
-                }
-
-                result = max(result, (lp - lp_neg) + pq + (qr - qr_neg));
-                // cout << l << " -> " << p << " = " << lp << " - " << lp_neg << endl;
-                // cout << p << " -> " << q << " = " << pq << endl;
-                // cout << q << " -> " << r << " = " << qr << " - " << qr_neg << endl;
-                // cout << lp + pq + qr << endl;
-                // cout << l << " -> " << p << " = " << lp << endl;
-                // cout << l << ' ' << r << endl;
-
-                l = q; p = r;
-                lp = qr;
-                i = r;
             }
+            ll lp_neg = 0;
+            ll curr_neg = 0;
+            for (int x = l; x < p - 1; x++) {
+                curr_neg += nums[x];
+                lp_neg = min(lp_neg, curr_neg);
+            }
+
+            ll qr_neg = 0;
+            curr_neg = 0;
+            for (int x = r - 1; x > q + 1; x--) {
+                curr_neg += nums[x];
+                qr_neg = min(qr_neg, curr_neg);
+            }
+            result = max(result, (lp - lp_neg) + pq + (qr - qr_neg));
+            // cout << l << " -> " << p << " = " << lp << " - " << lp_neg << endl;
+            // cout << p << " -> " << q << " = " << pq << endl;
+            // cout << q << " -> " << r << " = " << qr << " - " << qr_neg << endl;
+            // cout << lp + pq + qr << endl;
+            // cout << l << " -> " << p << " = " << lp << endl;
+            // cout << l << ' ' << r << endl;
+
+            l = q; p = r;
+            lp = qr;
+            i = r;
         }
 
         return result;
