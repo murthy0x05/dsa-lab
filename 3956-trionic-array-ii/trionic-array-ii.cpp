@@ -85,6 +85,7 @@ public:
                     continue;
                 }
             }
+            
             ll lp_neg = 0;
             ll curr_neg = 0;
             for (int x = l; x < p - 1; x++) {
