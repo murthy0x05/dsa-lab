@@ -10,11 +10,9 @@ public:
         const int n = nums.size();
 
         int result = 0;
-
-        for (int i = 0; i < n; i++) {
-            int curr = nums[i];
-            result += curr == k;
-            for (int j = i + 1; j < n; j++) {
+        for (int i = 0, curr; i < n; i++) {
+            curr = nums[i];
+            for (int j = i; j < n; j++) {
                 curr = gcd(curr, nums[j]);
                 if (curr == k) {
                     result++;
@@ -23,22 +21,6 @@ public:
                 }
             }
         }
-
-    
-
-        // int result = 0;
-        // for (int i = 0, curr = 0, len = 0; i < n; i++) {
-        //     if (gcd(nums[i], curr) >= k) {
-        //         len++;
-        //         if (gcd(nums[i], curr) == k) { 
-        //             result++;
-        //         }
-        //         curr = gcd(nums[i], curr);
-        //     } else {
-        //         curr = 0;
-        //         len = 0;
-        //     }
-        // }
 
         return result;
     }
