@@ -9,10 +9,9 @@ public:
         for (int i = 0; i < n; i++)
             mem[i][11] = 0;
         
-        function<int(int, int, int)> dfs = [&](int i, int j, int pos) {
+        function<int(int&, int&, int)> dfs = [&](const int& i, const int& j, int pos) {
             if (pos >= (n - 1)) {
-                if (grid[i][j] < 10) return 1;
-                return 0;
+                return mem[pos][grid[i][j]] = grid[i][j] < 10;
             }
             if (mem[pos][grid[i][j]] != -1) {
                 return mem[pos][grid[i][j]];
