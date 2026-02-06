@@ -6,18 +6,6 @@ public:
         
         int dp[r][c][c];
         memset(dp, -1, sizeof(dp));
-
-        // for (int i = 0; i < r; i++) {
-        //     for (int j2 = 0; j2 < c; j2++) {
-        //         dp[i][0][j2] = grid[0][0];
-        //     }
-        // }
-        // for (int i = 0; i < r; i++) {
-        //     for (int j1 = 0; j1 < c; j1++) {
-        //         dp[i][j1][c - 1] += grid[0][c - 1];
-        //     }
-        // }
-
         dp[0][0][c - 1] = grid[0][0] + grid[0][c - 1];
 
         for (int i = 1; i < r; i++) {
