@@ -50,7 +50,6 @@ public:
                 }
 
                 if (left.size() == right.size()) {
-                    cout << *prev(left.end()) << ' ' << *right.begin() << endl;
                     result.push_back((0LL + *prev(left.end()) + *right.begin()) / 2.0);
                 } else if (left.size() > right.size()) {
                     result.push_back(*prev(left.end()));
