@@ -15,7 +15,6 @@ public:
                             continue;
                         }
                         if (grid[i1][j1] == -1 || grid[i2][j2] == -1) {
-                            dp[i1][j1][i2] = -1;
                             continue;
                         }
                         
