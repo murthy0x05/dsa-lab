@@ -38,7 +38,6 @@ public:
                     } 
                 }
 
-
                 if (abs<int>(left.size() - right.size()) > 1) {
                     if (left.size() > right.size()) {
                         right.insert(*prev(left.end()));
@@ -72,15 +71,6 @@ public:
                         right.erase(right.begin());
                     }
                 }
-
-
-
-
-
-
-
-
-
             }
         }
 
