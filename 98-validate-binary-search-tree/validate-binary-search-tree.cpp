@@ -15,7 +15,7 @@ class Solution {
     // second = min value
     bool valid = true;
     pll dfs(TreeNode* root) {
-        if (!root) {
+        if (!root || !valid) {
             return make_pair(LONG_MIN, LONG_MAX);
         }
 
