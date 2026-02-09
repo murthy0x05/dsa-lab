@@ -13,21 +13,18 @@ class Solution {
 public:
     TreeNode* convertBST(TreeNode* root) {
         int total = 0;
-        function<TreeNode*(TreeNode*)> dfs = [&](TreeNode* bst) {
-            if (!bst)
-                return (TreeNode*) nullptr;
-            
-            TreeNode* gst = new TreeNode(-1);
-            gst -> right = dfs(bst -> right);
+        function<void(TreeNode*)> dfs = [&](TreeNode* bst) {
+            if (bst) {
+                dfs(bst -> right);
 
-            total += bst -> val;
-            gst -> val = total;
-            
-            gst -> left = dfs(bst -> left);
-
-            return gst;
+                total += bst -> val;
+                bst -> val = total;
+                
+                dfs(bst -> left);
+            }
         };
 
-        return dfs(root);
+        dfs(root);
+        return root;
     }
 };
