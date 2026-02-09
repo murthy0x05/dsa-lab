@@ -31,7 +31,6 @@ public:
             }
 
             int mid = low + ((high - low) >> 1);
-            cout << low << ' ' << high << endl;
             TreeNode* node = new TreeNode(inOrder[mid]);
             node -> left = dfs(low, mid - 1);
             node -> right = dfs(mid + 1, high);
