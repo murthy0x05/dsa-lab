@@ -1,45 +1,27 @@
 class Solution {
 public:
     int maxProfit(int k, vector<int>& prices) {
-        int n = prices.size();
-        // vector<vector<int>> dp(n, vector<int>(n, -1));
+        const int N = prices.size();
 
-        // for (int i = 0; i < n; i++) {
-        //     for (int j = i + 1; j < n; j++) {
-        //         if (i == 0) {
-        //             dp[i][j] = max(0, prices[j] - prices[i]);
-        //         } else {
-        //             dp[i][j] = max(0, prices[j] - prices[i]);
-        //             dp[i][j] += dp[i - 1][i];
-        //             dp[i][j] = max(dp[i][j], dp[i - 1][j]);
-        //         }
-        //         dp[i][j] = max({dp[i][j], dp[i][j - 1]});
-        //     }
-        // }
-
-        vector<vector<int>> dp(n, vector<int>(k + 1, 0));
-        
-        for (int t = 1; t <= k; t++) {
-            int maxDiff = -prices[0];
-            
-            for (int i = 1; i < n; i++) {
-                dp[i][t] = max(dp[i-1][t], prices[i] + maxDiff);
-                maxDiff = max(maxDiff, dp[i][t-1] - prices[i]);
+        vector<vector<vector<int>>> dp(N, vector<vector<int>>(k + 1, vector<int>(2, -1001)));
+        dp[0][0][0] = 0; dp[0][0][1] = -prices[0];
+        for (int i = 1; i < N; i++) {
+            for (int j = 0; j <= k; j++) {
+                dp[i][j][0] = dp[i - 1][j][0];
+                if (j > 0)
+                    dp[i][j][0] = max(dp[i][j][0], dp[i - 1][j - 1][1] + prices[i]);
+                
+                dp[i][j][1] = dp[i - 1][j][1];
+                if (j < k)
+                    dp[i][j][1] = max(dp[i][j][1], dp[i - 1][j][0] - prices[i]);
             }
         }
 
-        // for (auto& row: dp) {
-        //     for (int ele: row) {
-        //         if (ele == -1) {
-        //             cout << " ";
-        //         } else {
-        //             cout << ele;
-        //         }
-        //         cout << " ";
-        //     }
-        //     cout << endl;
-        // }
+        int result = 0;
+        for (int j = 0; j <= k; j++) {
+            result = max(result, dp[N - 1][j][0]);
+        }
 
-        return dp[n - 1].back();
+        return result;
     }
 };
