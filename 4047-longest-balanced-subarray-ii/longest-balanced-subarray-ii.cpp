@@ -15,9 +15,6 @@ private:
     }
     void push(int node) {
         if (tree[node].lazy) {
-            int l = left(node), r = right(node);
-                if (l >= tree.size()) return;
-
             tree[left(node)].mn += tree[node].lazy;
             tree[left(node)].mx += tree[node].lazy;
 
