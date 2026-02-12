@@ -26,7 +26,7 @@ public:
                     matched = f(n - 1, m - 1);
                 } else if (p[m] == '*') {
                     matched = f(n, m - 2);
-                    if (s[n] == p[m - 1] || p[m - 1] == '.') {
+                    if (!matched && (s[n] == p[m - 1] || p[m - 1] == '.')) {
                         matched = matched || f(n - 1, m);
                     }
                 }
