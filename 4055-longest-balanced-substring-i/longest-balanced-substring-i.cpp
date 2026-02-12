@@ -6,18 +6,19 @@ public:
 
         int result = 0;
         for (int i = 0; i < N; i++) {
-            vector<int> counts(26, 0);
-            for (int j = i; j >= 0; j--) {
-                counts[s[j] - 'a']++;
-                bool flag = true;
-                for (int k = 0; k < 26; k++) {
-                    if (counts[k] != 0 && counts[s[j] - 'a'] != counts[k]) {
-                        flag = false;
-                    }
-                }
+            if (N - i <= result) {
+                break;
+            }
 
-                if (flag) {
-                    result = max(result, i - j + 1);
+            vector<int> counts(26, 0);
+            int unique = 0, maxFreq = 0;
+            for (int j = i; j < N; j++) {
+                counts[s[j] - 'a']++;
+                unique += counts[s[j] - 'a'] == 1;
+                maxFreq = max(maxFreq, counts[s[j] - 'a']);
+
+                if (unique * maxFreq == (j - i + 1)) {
+                    result = max(result, j - i + 1);
                 }
             }
         }
