@@ -12,7 +12,7 @@ public:
                 if (!visited[i] && (i % idx == 0 || idx % i == 0)) {
                     visited.set(i);
                     count += f(len + 1);
-                    visited.reset(i);
+                    visited.flip(i);
                 }
             }
 
