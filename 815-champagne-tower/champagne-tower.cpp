@@ -19,6 +19,6 @@ public:
             prev = curr;
         }
 
-        return prev[query_glass] >= 1.0 ? 1.0 : prev[query_glass];
+        return min(1.0, prev[query_glass]);
     }
 };
