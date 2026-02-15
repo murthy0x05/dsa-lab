@@ -4,7 +4,7 @@ public:
         const int M = s.size(),
                   N = t.size();
 
-        map<char, int> occ;
+        unordered_map<char, int> occ;
         for (int i = 0; i < N; i++) {
             occ[t[i]] += 1;
         }
