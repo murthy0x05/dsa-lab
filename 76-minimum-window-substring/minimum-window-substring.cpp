@@ -17,10 +17,7 @@ public:
                 }
                 occ[s[r]] -= 1;
             }
-
-            if (r == M - 1) {
-                cout << covered << endl;
-            }
+            
             while (covered == N) {
                 if ((ri - li + 1) > (r - l + 1)) {
                     ri = r; li = l;
