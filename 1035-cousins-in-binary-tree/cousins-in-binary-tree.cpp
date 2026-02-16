@@ -17,34 +17,24 @@ public:
             if (!node) {
                 return -1;
             }
-            if (node -> val == x) {
-                node -> val = 0;
-                x = 0;
-                return 0;
-            }
-            if (node -> val == y) {
-                node -> val = 0;
-                y = 0;
-                return 0;
-            }
 
-            int left = dfs(node -> left);
-            int right = dfs(node -> right);
+            if (node -> val == x) 
+                return x = 0;
+            if (node -> val == y)
+                return y = 0;
 
-            if (left == -1 || right == -1) {
-                if (left != -1) {
-                    return left + 1;
-                } else if (right != -1) {
-                    return right + 1;
-                } else {
-                    return -1;
-                }
-            }
+            int l = dfs(node -> left);
+            int r = dfs(node -> right);
 
-            if (left == right) {
-                if (node -> left -> val != node -> right -> val || node -> left -> val != 0) {
-                    onSameLevel = true;
-                }
+            if (l == -1 && r == -1)
+                return -1;
+            if (l == -1)
+                return r + 1;
+            if (r == -1)
+                return l + 1;
+            if (l == r) {
+                onSameLevel = l != 0;
+                return l + 1;
             }
 
             return -1;
