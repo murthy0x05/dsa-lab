@@ -13,7 +13,7 @@ class Solution {
     int i = 0, N;
     TreeNode* buildBST(vector<int>& preorder, int low, int high) {
         if (i == N || preorder[i] < low || preorder[i] > high) {
-            return (TreeNode*) nullptr;
+            return nullptr;
         }
 
         TreeNode* node = new TreeNode(preorder[i]); i++;
