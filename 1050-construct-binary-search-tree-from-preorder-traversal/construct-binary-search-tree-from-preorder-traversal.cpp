@@ -10,22 +10,20 @@
  * };
  */
 class Solution {
+    int i = 0, N;
+    TreeNode* buildBST(vector<int>& preorder, int low, int high) {
+        if (i == N || preorder[i] < low || preorder[i] > high) {
+            return (TreeNode*) nullptr;
+        }
+
+        TreeNode* node = new TreeNode(preorder[i]); i++;
+        node -> left = buildBST(preorder, low, node -> val - 1);
+        node -> right = buildBST(preorder, node -> val + 1, high);
+        return node;
+    }
 public:
     TreeNode* bstFromPreorder(vector<int>& preorder) {
-        const int N = preorder.size();
-        int i = 0;
-        function<TreeNode*(int, int)> buildBST = [&] (int low, int high) {
-            if (i == N || preorder[i] < low || preorder[i] > high) {
-                return (TreeNode*) nullptr;
-            }
-
-            TreeNode* node = new TreeNode(preorder[i]); i++;
-            node -> left = buildBST(low, node -> val - 1);
-            node -> right = buildBST(node -> val + 1, high);
-
-            return node;
-        };
-
-        return buildBST(0, 1001);
+        N = preorder.size();
+        return buildBST(preorder, 0, 1001);
     }
 };
