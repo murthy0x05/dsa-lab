@@ -3,7 +3,7 @@ public:
     bool canPartition(vector<int>& nums) {
         int sum = accumulate(nums.begin(), nums.end(), 0);
         
-        if (sum % 2 != 0) {
+        if (sum & 1) {
             return false;
         }
         
@@ -13,7 +13,7 @@ public:
         dp[0] = true;
         for (const int& num: nums) {
             for (int i = target; i >= num; i--) {
-                dp[i] = dp[i] || dp[i - num];
+                dp[i]  = dp[i] || dp[i - num];
             }
         }
 
