@@ -12,27 +12,27 @@
 class Solution {
 public:
     string tree2str(TreeNode* root) {
-        function<string(TreeNode*)> serialize = [&] (TreeNode* node) {
-            string code = to_string(node -> val);
+        string code;
+        function<void(TreeNode*)> serialize = [&] (TreeNode* node) {
+            code += to_string(node -> val);
 
             if (!node -> left && !node -> right) 
-                return code;
+                return ;
 
             code.push_back('(');
             if (node -> left) {
-                code += serialize(node -> left);
+                serialize(node -> left);
             }
             code.push_back(')');
 
             if (node -> right) {
                 code.push_back('(');
-                code += serialize(node -> right);
+                serialize(node -> right);
                 code.push_back(')');
             }
-
-            return code;
         };
 
-        return serialize(root);
+        serialize(root);
+        return code;
     }
 };
