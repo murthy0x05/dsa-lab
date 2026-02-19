@@ -4,7 +4,7 @@ public:
         const int N = s.size();
         
         int result = 0;
-        for (int l = 0, r = 0, po = 0, st; r < N;) {
+        for (int l = 0, r = 0, po = 0, st; r < N; po = l, l = r) {
             st = l;
             while (l < N && s[l] == '0') {
                 l++;
@@ -16,8 +16,6 @@ public:
 
             result += min(l - st, r - l);
             result += min(l - st, st - po);
-            po = l;
-            l = r;
         }
 
         return result;
