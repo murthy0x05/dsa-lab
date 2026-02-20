@@ -33,7 +33,6 @@ public:
         int regions = 0;
         for (int i = 0; i < 3 * N; i++) {
             for (int j = 0; j < 3 * N; j++) {
-                cout << binary_grid[i][j] << ' ';
                 if (binary_grid[i][j] == '0' && !visited[i][j]) {
                     dfs(i, j);
                     regions++;
