@@ -24,7 +24,7 @@ public:
             for (int d = 0; d < 4; d++) {
                 int ni = i + dir[d];
                 int nj = j + dir[d + 1];
-                if (ni >= 0 && nj >= 0 && ni < 3 * N && nj < 3 * N && !visited[ni][nj] && binary_grid[ni][nj] == '0') {
+                if (ni >= 0 && nj >= 0 && ni < (3 * N) && nj < (3 * N) && !visited[ni][nj] && binary_grid[ni][nj] == '0') {
                     dfs(ni, nj);
                 }
             }
@@ -38,8 +38,6 @@ public:
                     regions++;
                 }
             }
-
-            cout << endl;
         }
 
         return regions;
