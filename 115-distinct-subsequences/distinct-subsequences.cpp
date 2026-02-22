@@ -43,11 +43,6 @@ public:
         //     cout << endl;
         // }
 
-        // int result = 0;
-        // for (int i = 0; i < N + 1; i++) {
-        //     result += dp[i][M];
-        // }
-
         return dp.back().back();
     }
 };
