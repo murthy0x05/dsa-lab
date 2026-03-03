@@ -1,8 +1,7 @@
 class Solution {
 public:
     char findKthBit(int n, int k) {
-        vector<int> sz(21, 0);
-        sz[1] = 1;
+        vector<int> sz(21, 0); sz[1] = 1;
         for (int i = 2; i <= 20; i++) {
             sz[i] = (sz[i - 1] * 2) + 1;
         }
