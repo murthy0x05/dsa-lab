@@ -2,18 +2,11 @@ class Solution {
     public String findDifferentBinaryString(String[] nums) {
         final int N = nums.length;
 
-        Set<Integer> seen = new HashSet<>();
+        StringBuilder sb = new StringBuilder();
         for (int i = 0; i < N; i++) {
-            seen.add(Integer.parseInt(nums[i], 2));
+            sb.append('0' + 1 - nums[i].charAt(i));
         }
 
-        for (int i = 0, len = 1 << N; i < len; i++) {
-            if (!seen.contains(i)) {
-                String result = Integer.toBinaryString(i);
-                return String.format("%" + N +  "s", result).replace(' ', '0');
-            }
-        }
-
-        return "";
+        return sb.toString();
     }
 }
