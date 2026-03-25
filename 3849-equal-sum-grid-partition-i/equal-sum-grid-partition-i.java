@@ -10,6 +10,10 @@ class Solution {
             }
         }
 
+        if ((ps[R][C] & 1) == 1) {
+            return false;
+        }
+
         for (int i = 1; i < R; i++) {
             if (ps[i][C] == (ps[R][C] - ps[i][C])) {
                 return true;
