@@ -14,7 +14,6 @@ public:
             result.pop_back();
         }
 
-
         return result;
     }
 };
