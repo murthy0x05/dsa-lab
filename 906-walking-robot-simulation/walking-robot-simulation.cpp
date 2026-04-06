@@ -21,7 +21,6 @@ public:
                         y += dy;
                     }
                 }
-                cout << x << ' ' << y << endl;
             } else if (commands[i] == -2) {
                 if (dx == 0 && dy == 1) {
                     dx = -1;
@@ -51,7 +50,6 @@ public:
                     dy = 1;
                 }
             }
-
 
             result = max(result, x * x + y * y);
         }
