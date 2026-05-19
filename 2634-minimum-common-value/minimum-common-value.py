@@ -1,7 +1,6 @@
 class Solution(object):
     def getCommon(self, nums1, nums2):
-        i = 0
-        j = 0
+        i, j = 0, 0
         common = float('inf')
 
         while i < len(nums1) and j < len(nums2):
