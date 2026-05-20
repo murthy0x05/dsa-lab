@@ -4,7 +4,7 @@ public:
         const int N = A.size();
 
         vector<int> result;
-        unordered_set<int> unmatched;
+        set<int> unmatched;
         for (int i = 0, matched = 0; i < N; i++) {
             if (unmatched.find(-A[i]) != unmatched.end()) {
                 unmatched.erase(-A[i]);
