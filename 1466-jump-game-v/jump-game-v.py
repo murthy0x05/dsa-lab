@@ -4,10 +4,8 @@ class Solution:
     def maxJumps(self, arr: List[int], d: int) -> int:
         N = len(arr)
         
-        mem = [-1 for _ in range(N)]
+        @cache
         def dfs(i):
-            if mem[i] != -1:
-                return mem[i]
             visited = 1
 
             for j in range(i + 1, min(i + d + 1, N)):
@@ -19,8 +17,7 @@ class Solution:
                     break
                 visited = max(visited, dfs(j) + 1)
             
-            mem[i] = visited
-            return mem[i]
+            return visited
         
         maxVisited = 0
         for i in range(N):
