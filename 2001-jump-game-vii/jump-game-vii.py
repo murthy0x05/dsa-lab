@@ -1,6 +1,8 @@
 class Solution:
     def canReach(self, s: str, minJump: int, maxJump: int) -> bool:
         N = len(s)
+        if s[-1] == '1' or '1' * maxJump in s:
+            return False
 
         visited = [0]
         def lb(target):
