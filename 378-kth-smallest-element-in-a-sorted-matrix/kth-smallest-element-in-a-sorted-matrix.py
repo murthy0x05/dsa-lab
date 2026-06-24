@@ -8,8 +8,15 @@ class Solution:
             m = l + ((r - l) >> 1)
             K, Kth = 0, float('-inf')
             for row in range(R):
-                while col >= 0 and matrix[row][col] > m:
-                    col -= 1
+                il, ir = 0, col
+                while il <= ir:
+                    im = il + ((ir - il) >> 1)
+                    if matrix[row][im] > m:
+                        ir = im - 1
+                    else:
+                        il = im + 1
+                
+                col = il - 1
                 
                 K += col + 1
                 if col >= 0:
