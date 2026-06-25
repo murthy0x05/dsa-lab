@@ -11,37 +11,41 @@
  */
 class Solution {
     int cameras = 0;
-    int solve(TreeNode* root) {
-        if (root == nullptr) {
+    int f (TreeNode* node) {
+        if (!node) {
             return 1;
         }
+        if (!(node -> left) && !(node -> right)) {
+            return 0;
+        }
 
-        int left = solve(root -> left);
-        int right = solve(root -> right);
+        int l = f(node -> left);
+        int r = f(node -> right);
 
-        if (left == 0 || right == 0) {
-            cameras += 1;
+        if (l == 0 || r == 0) {
+            cameras++;
             return 2;
         }
-        if (left == 2 || right == 2) {
+        if (l == 2 || r == 2) {
             return 1;
         }
-
         return 0;
     }
 public:
     int minCameraCover(TreeNode* root) {
-        if (solve(root) == 0) {
-            return cameras + 1;
-        } else {
-            return cameras;
+
+        // 3 states
+        /*
+            0 => not covered
+            1 => covered
+            2 => covered and has camera
+        */
+        if (f(root) == 0) {
+            cameras++;
         }
+        return cameras;
+
+
+        
     }
 };
-
-/*
- * Here, each node can be defined as one of 3 types:
- * type 0: No camera, Not being watched.
- * type 1: No camera, being watched.
- * type 2: Camera, so begin watched(trivial).
- */
