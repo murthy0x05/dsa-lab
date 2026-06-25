@@ -1,38 +1,47 @@
 class Solution {
 public:
     string minWindow(string s, string t) {
-        const int M = s.size(),
-                  N = t.size();
+        const int M = s.size();
+        const int N = t.size();
 
-        unordered_map<char, int> occ;
+        unordered_map<int, int> occ;
         for (int i = 0; i < N; i++) {
-            occ[t[i]] += 1;
+            occ[t[i]]++;
         }
 
-        int li = -1, ri = M + 1;
-        for (int l = 0, r = 0, covered = 0; r < M; r++) {
-            if (occ.count(s[r])) {
-                if (occ[s[r]] > 0) {
-                    covered++;
-                }
-                occ[s[r]] -= 1;
-            }
-            
-            while (covered == N) {
-                if ((ri - li + 1) > (r - l + 1)) {
-                    ri = r; li = l;
+        int smallest = INT_MAX;
+        int rl = -1, rr = -1;
+        int incomp = occ.size();
+        int l = 0, r = 0;
+        while (l < M) {
+            if (incomp == 0) {
+                if (smallest > (r - l)) {
+                    smallest = r - l;
+                    rl = l;
+                    rr = r;
                 }
                 if (occ.count(s[l])) {
-                    occ[s[l]] += 1;
-                    if (occ[s[l]] > 0)
-                        covered--;
+                    occ[s[l]]++;
+                    if (occ[s[l]] == 1) {
+                        incomp++;
+                    }
                 }
                 l++;
+            } else {
+                if (r == M) break;
+                if (occ.count(s[r])) {
+                    occ[s[r]]--;
+                    if (occ[s[r]] == 0) {
+                        incomp--;
+                    }
+                }
+                r++;
             }
         }
 
-        if (li == -1)
+        if (smallest == INT_MAX) {
             return "";
-        return s.substr(li, ri - li + 1);
+        }
+        return s.substr(rl, rr - rl);
     }
 };
