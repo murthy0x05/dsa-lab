@@ -29,11 +29,9 @@ class Solution:
             level += 1
         
         def feasible(M):
-            nonlocal R, C
             visited = [[False for _ in range(C)] for _ in range(R)]
             
             def dfs(i, j):
-                nonlocal R, C, M
                 if i == R - 1 and j == C - 1:
                     return True
 
