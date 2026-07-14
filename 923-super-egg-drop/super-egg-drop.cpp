@@ -3,10 +3,7 @@ public:
     int superEggDrop(int k, int n) {
         vector<vector<int>> mem(n + 1, vector<int>(k + 1, -1));
         function<int(int, int)> f = [&] (int E, int N) {
-            if (E <= 1) {
-                return N;
-            }
-            if (N <= 1) {
+            if (E <= 1 or N <= 1) {
                 return N;
             }
 
