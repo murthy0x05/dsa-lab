@@ -18,7 +18,6 @@ class Solution:
                                 S.pop()
                         else:
                             S.append(asteroid)
-
                     else:
                         S.append(asteroid)
             else:
