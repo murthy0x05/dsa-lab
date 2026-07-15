@@ -11,8 +11,8 @@ class Solution:
             f1[ord(word1[i]) - ord('a')] += 1
             f2[ord(word2[i]) - ord('a')] += 1
         
-        for i in range(26):
-            if (f1[i] > 0) ^ (f2[i] > 0):
-                return False
+        # for i in range(26):
+        #     if (f1[i] > 0) ^ (f2[i] > 0):
+        #         return False
         
-        return sorted(f1) == sorted(f2)
+        return set(word1) == set(word2) and sorted(f1) == sorted(f2)
