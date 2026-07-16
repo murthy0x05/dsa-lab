@@ -1,7 +1,9 @@
+import math
+
 class Solution:
     def gcdSum(self, nums: list[int]) -> int:
-        def gcd(a, b):
-            return a if b == 0 else gcd(b, a % b)
+        # def gcd(a, b):
+        #     return a if b == 0 else gcd(b, a % b)
         
         N = len(nums)
 
