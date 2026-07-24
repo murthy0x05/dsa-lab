@@ -3,20 +3,24 @@ public:
     int uniqueXorTriplets(vector<int>& nums) {
         const int N = nums.size();
 
-        unordered_set<int> have;
+        vector<bool> have(2049);
         for (int i = 0; i < N; i++) {
             for (int j = i; j < N; j++) {
-                have.insert(nums[i] ^ nums[j]);
+                have[nums[i] ^ nums[j]] = true;
             }
         }
 
-        unordered_set<int> result;
+        vector<bool> result(2049);
         for (int k = 0; k < N; k++) {
-            for (const int& val: have) {
-                result.insert(nums[k] ^ val);
+            for (int x = 0; x < 2049; x++) {
+                if (have[x] == 1) {
+                    result[nums[k] ^ x] = true;
+                }
             }
         }
 
-        return result.size();
+        cout << (31 - __builtin_clz(1500)) << endl;
+
+        return accumulate(result.begin(), result.end(), 0);
     }
 };
