@@ -17,7 +17,6 @@ class Solution:
             q = copy.deepcopy(Q)
             visited = copy.deepcopy(V)
 
-
             level = 0
             while q and level < STAY:
                 for _ in range(len(q)):
@@ -68,13 +67,11 @@ class Solution:
             return False
         
         low, high = 0, 10 ** 9
-        result = -1
         while low <= high:
             mid = low + ((high - low) >> 1)
             if feasible(mid):
-                result = mid
                 low = mid + 1
             else:
                 high = mid - 1
         
-        return result
+        return high
