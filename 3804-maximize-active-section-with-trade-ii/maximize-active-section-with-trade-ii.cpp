@@ -4,7 +4,8 @@ class ST {
 public:
     ST(vector<vector<int>>& arr) {
         N = arr.size();
-        int L = (1 << ((32 - __builtin_clz(N) + ((N & (N - 1)) > 0)))) - 1;
+        int H = 1 << (31 - __builtin_clz(N) + ((N & (N - 1)) > 0));
+        int L = (H << 1) - 1;
         tree.resize(L);
         build(arr, 0, 0, N - 1);
     }
