@@ -17,7 +17,5 @@ class Solution:
                 smallest[id] = smallest[N - id - 1] = chr(ord('a') + i)
                 freq[i] -= 2
                 id += 1
-
-
-        
+                
         return ''.join(smallest)
