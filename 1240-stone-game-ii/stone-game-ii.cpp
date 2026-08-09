@@ -3,7 +3,8 @@ public:
     int stoneGameII(vector<int>& piles) {
         const int N = piles.size();
 
-        vector<vector<vector<int>>> mem(N, vector<vector<int>>(2 * N, vector<int>(2, -1)));
+        int mem[101][201][2];
+        memset(mem, -1, sizeof(mem));
         function<int(int, int, bool)> f = [&] (int i, int M, bool alice) {
             if (i >= N) {
                 return 0;
