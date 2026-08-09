@@ -1,35 +1,39 @@
 class Solution {
-public:
-    pair<int,int> recurse(vector<pair<int,int>> &dp, vector<int> &a, int curr, int n) {
-        if (curr >= n) return {0, 0};
+    int f (vector<pair<int, int>>& mem, const int& N, const vector<int>& stoneValue, int i, bool alice) {
+        if (i >= N) {
+            return 0;
+        }
+
+        if ((alice and mem[i].first != 1e9) or (!alice and mem[i].second != 1e9)) {
+            return alice ? mem[i].first : mem[i].second;
+        }
         
-        pair<int,int> best = {INT_MIN, INT_MAX};
-        int sum = 0;
-        
-        for(int i = 0; i <= 2; ++i) {
-            if (curr + i >= n) break;
-            sum += a[curr + i];
-            
-            pair<int,int> cur = (dp[curr + i + 1] == pair<int,int>{-1, -1}) 
-                                ? recurse(dp, a, curr + i + 1, n) 
-                                : dp[curr + i + 1];
-                                
-            if (sum + cur.second > best.first) {
-                best = {sum + cur.second, cur.first};
+        int procure = alice ? INT_MIN : INT_MAX;
+        int got = 0;
+        for (int X = 0; X < 3 and i + X < N; X++) {
+            got += stoneValue[i + X];
+            if (alice) {
+                procure = max(procure, got + f(mem, N, stoneValue, i + X + 1, !alice));
+            } else {
+                procure = min(procure, -got + f(mem, N, stoneValue, i + X + 1, !alice));
             }
         }
-        return dp[curr] = best;
+        
+        return (alice ? mem[i].first : mem[i].second) = procure;
     }
-    
-    string stoneGameIII(vector<int>& a) {
-        int n = a.size();
-        vector<pair<int,int>> dp(n + 3, {-1, -1});
-        
-        pair<int,int> ans = recurse(dp, a, 0, n);
-        
-        if (ans.first > ans.second) return "Alice";
-        else if (ans.first < ans.second) return "Bob";
-        
-        return "Tie";
+public:
+    inline string stoneGameIII(vector<int>& stoneValue) {
+        const int N = stoneValue.size();
+
+        vector<pair<int, int>> mem(N, make_pair(1e9, 1e9));
+
+        int end = f(mem, N, stoneValue, 0, true);
+        if (end == 0) {
+            return "Tie";
+        } else if (end > 0) {
+            return "Alice";
+        } else {
+            return "Bob";
+        }
     }
 };
