@@ -16,10 +16,9 @@ var maxNumberOfFamilies = function(n, rs) {
         g3 = !(rs[l][1] >= 6 && rs[l][1] <= 9);
     for (let r = 1; r < N; r++) {
         if (rs[r][0] == rs[l][0]) {
-            let seat = rs[r][1];
-            g1 &&= !(seat >= 2 && seat <= 5);
-            g2 &&= !(seat >= 4 && seat <= 7);
-            g3 &&= !(seat >= 6 && seat <= 9);
+            g1 &&= !(rs[r][1] >= 2 && rs[r][1] <= 5);
+            g2 &&= !(rs[r][1] >= 4 && rs[r][1] <= 7);
+            g3 &&= !(rs[r][1] >= 6 && rs[r][1] <= 9);
         } else {
             if (g1 && g3) {
                 result += 2;
