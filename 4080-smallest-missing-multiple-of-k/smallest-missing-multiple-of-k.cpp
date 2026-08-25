@@ -1,7 +1,7 @@
 class Solution {
 public:
     int missingMultiple(vector<int>& nums, int k) {
-        nums.push_back(INT_MAX);
+        nums.push_back(1e9 + 7);
         const int N = nums.size();
 
         sort(nums.begin(), nums.end());
