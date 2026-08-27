@@ -9,6 +9,10 @@ public:
         }
 
         auto goback = [&] (string& result) {
+            if (result.empty()) {
+                return string("");
+            }
+
             int k = result.size() - 1;
             while (k >= 0) {
                 for (int j = result.back() - 'a' + 1; j < 26; j++) {
