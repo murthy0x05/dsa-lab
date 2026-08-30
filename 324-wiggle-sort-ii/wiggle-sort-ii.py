@@ -18,4 +18,4 @@ class Solution:
             j -= 1
         
         for i in range(N):
-            nums[i] = arr[i]
+            nums[i] = arr[i]  
