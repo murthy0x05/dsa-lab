@@ -28,7 +28,6 @@ class Solution:
         for l, r in lens:
             if l > 0:
                 smallest = min(smallest, r - l + 1 + dp[l - 1])
-        print(dp)
         
         if smallest == float('inf'):
             return -1
