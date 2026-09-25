@@ -5,7 +5,6 @@ class Solution:
         words = set()
         def f (word):
             cid = word.find('}')
-
             if cid == -1:
                 words.add(word)
                 return 
