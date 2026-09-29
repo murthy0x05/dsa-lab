@@ -5,20 +5,20 @@ class Solution:
         self.R, self.C = len(grid), len(grid[0])
         
         @cache
-        def f (i, j, o, c):
+        def f (i, j, diff):
             if (not (0 <= i < self.R)) or (not (0 <= j < self.C)):
                 return False
-            if o < c:
+            if diff < 0:
                 return False
 
             if grid[i][j] == '(':
-                o += 1
+                diff += 1
             else:
-                c += 1
+                diff -= 1
 
             if i == self.R - 1 and j == self.C - 1:
-                return o == c
+                return diff == 0
             
-            return f(i, j + 1, o, c) or f(i + 1, j, o, c)
+            return f(i, j + 1, diff) or f(i + 1, j, diff)
 
-        return f (0, 0, 0, 0)
+        return f (0, 0, 0)
