@@ -6,16 +6,10 @@ class Solution:
         
         @cache
         def f (i, j, diff):
-            if (not (0 <= i < self.R)) or (not (0 <= j < self.C)):
-                return False
-            if diff < 0:
+            if (not (0 <= i < self.R)) or (not (0 <= j < self.C)) or diff < 0:
                 return False
 
-            if grid[i][j] == '(':
-                diff += 1
-            else:
-                diff -= 1
-
+            diff += 1 if grid[i][j] == '(' else -1
             if i == self.R - 1 and j == self.C - 1:
                 return diff == 0
             
