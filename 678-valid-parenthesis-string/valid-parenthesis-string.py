@@ -12,10 +12,10 @@ class Solution:
                 return diff == 0
 
             if s[i] == '(':
-                return f (i + 1, diff + 1)
+                return f(i + 1, diff + 1)
             elif s[i] == ')':
-                return f (i + 1, diff - 1)
+                return f(i + 1, diff - 1)
             else:
-                return f (i + 1, diff) or f (i + 1, diff + 1) or f (i + 1, diff - 1)
+                return f(i + 1, diff) or f(i + 1, diff + 1) or f(i + 1, diff - 1)
         
         return f (0, 0)
