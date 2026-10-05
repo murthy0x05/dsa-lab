@@ -35,6 +35,3 @@ class Solution:
             return score
 
         return f(0, N - 1)
-            
-
-        
