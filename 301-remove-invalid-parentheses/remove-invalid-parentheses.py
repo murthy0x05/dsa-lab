@@ -27,5 +27,4 @@ class Solution:
                     f (i + 1, o, c)
 
         f (0, 0, 0)
-
         return parens if parens else [""]
