@@ -14,10 +14,7 @@ class Solution:
 
             take = 0
             skip = f(i + 1, False)
-            if took:
-                if occ[i][0] - 1 != occ[i - 1][0]:
-                    take = occ[i][0] * occ[i][1] + f(i + 1, True)
-            else:
+            if not took or took and occ[i][0] - 1 != occ[i - 1][0]:
                 take = occ[i][0] * occ[i][1] + f(i + 1, True)
             
             return max(take, skip)
