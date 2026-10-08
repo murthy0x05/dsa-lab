@@ -4,7 +4,6 @@ class Solution:
 
         occ = Counter(nums)
         occ = sorted(occ.items(), key = itemgetter(0))
-
         sz = len(occ)
 
         @cache
