@@ -5,8 +5,6 @@ class Solution:
         ids = [i for i in range(N)]
         ids.sort(key = lambda id: (sum([int(val) for val in str(nums[id])]), nums[id]))
 
-        print(ids)
-    
         swaps = 0
         for i in range(N):
             if ids[i] != i:
@@ -21,7 +19,6 @@ class Solution:
                     curr = next
                     V += 1
                 
-                print(V)
                 swaps += V - 1
     
         return swaps
