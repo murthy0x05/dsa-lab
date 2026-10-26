@@ -4,7 +4,6 @@ class Solution:
 
         nums.sort()
 
-        @cache
         def f(prev):
             next = prev * prev
 
