@@ -11,4 +11,3 @@ class Solution:
                 dp[i] = min(dp[i], dp[i - 3] + costs[i - 1] + 9)
 
         return dp[-1]
-
