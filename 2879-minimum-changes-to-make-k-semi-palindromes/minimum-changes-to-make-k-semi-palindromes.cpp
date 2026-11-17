@@ -23,6 +23,7 @@ public:
                 cost[i][j] = best;
             }
         }
+        
         vector<vector<int>> dp(n + 1, vector<int>(k + 1, INF));
         dp[0][0] = 0;
         for (int i = 1; i <= n; ++i) {
@@ -33,6 +34,7 @@ public:
                 }
             }
         }
+
         return dp[n][k];
     }
 };
